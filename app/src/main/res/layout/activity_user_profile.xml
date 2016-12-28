@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_user_profile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:fadeScrollbars="false"
+    tools:context="com.example.aaryan.xn8.editUserProfileActivity">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <!-- IMP: paddingTop="76dp"   as toolbar height is set to 72dp -->
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="76dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:id="@+id/textReg"
+                android:layout_gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:theme="@style/ThemeOverlay.MyTitleText"
+                android:paddingBottom="20dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update your details as needed."
+                android:id="@+id/textChoose"
+                android:layout_below="@+id/textReg"
+                android:layout_alignParentLeft="true"
+                android:theme="@style/ThemeOverlay.MyInstructionText"
+                />
+
+
+            <CheckBox android:id="@+id/checkbox_pan"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:text="PAN Card"
+                android:layout_below="@+id/textChoose"
+                android:layout_alignParentLeft="true"
+                android:onClick="onCheckboxClicked"/>
+
+
+            <CheckBox android:id="@+id/checkbox_aadhaar"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:text="Aadhaar Card"
+                android:layout_alignTop="@+id/checkbox_pan"
+                android:layout_alignParentRight="true"
+                android:onClick="onCheckboxClicked"/>
+
+            <EditText
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:textColor="@color/colorBlack"
+                android:id="@+id/fieldPanNo"
+                android:hint="PAN Number"
+                android:layout_below="@+id/checkbox_pan"
+                android:layout_alignParentLeft="true"
+                android:textSize="15dp"
+                />
+
+
+            <EditText
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:textColor="#000000"
+                android:id="@+id/fieldAadhaarNo"
+                android:hint="Aadhaar Number"
+                android:layout_alignTop="@id/fieldPanNo"
+                android:layout_alignParentRight="true"
+                android:textSize="15dp"
+                android:paddingBottom="10dp"/>
+
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:text="PAN Card \n photograph"
+                android:id="@+id/textSnapPan"
+                android:layout_below="@id/fieldPanNo"
+                android:textColor="@color/colorPrimary"
+                android:background="@color/textBackground"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:drawableTop="@drawable/ic_cam_cap" />
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:text="Aadhaar Card \n photograph"
+                android:id="@+id/textSnapAadhaar"
+                android:layout_alignTop="@+id/textSnapPan"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorPrimary"
+                android:background="@color/textBackground"
+                android:textSize="15dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:drawableTop="@drawable/ic_cam_cap" />
+
+
+
+            <RelativeLayout
+                android:id="@+id/middleLayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:layout_below="@+id/textSnapPan">
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:id="@+id/fieldFirstName"
+                    android:hint="First Name"
+                    android:textColor="#000000"
+                    android:layout_alignParentLeft="true"
+                    android:textSize="14sp"/>
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:textColor="#000000"
+                    android:id="@+id/fieldLastName"
+                    android:hint="Last Name"
+                    android:layout_below="@+id/fieldFirstName"
+                    android:textSize="14sp"/>
+
+
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:inputType="number"
+                    android:id="@+id/fieldMobileNo"
+                    android:hint="Mobile Number"
+                    android:layout_below="@+id/fieldLastName"
+                    android:textSize="14sp"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/fieldEmailId"
+                    android:hint="Email ID"
+                    android:layout_below="@+id/fieldMobileNo"
+                    android:textSize="14sp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottomLayout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:paddingBottom="20dp"
+                android:paddingTop="20dp"
+                android:background="@color/grey_100"
+                android:layout_below="@+id/middleLayout">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Re-Set Your Password"
+                    android:id="@+id/textSetPwd"
+                    android:layout_gravity="center"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:theme="@style/ThemeOverlay.MyTitleText"
+                    android:paddingBottom="10dp"/>
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password Should Be At Least 6 Characters Long."
+                    android:id="@+id/textPassLimit"
+                    android:layout_below="@+id/textSetPwd"
+                    android:layout_alignParentLeft="true"
+                    android:theme="@style/ThemeOverlay.MyInstructionText" />
+
+
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="Your ID is "
+                    android:id="@+id/yourIDIs"
+                    android:layout_below="@+id/textPassLimit"
+                    android:layout_alignParentLeft="true"
+                    android:theme="@style/ThemeOverlay.MyAllText"/>
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:hint="make it auto"
+                    android:id="@+id/fieldyourIDIs"
+                    android:layout_alignTop="@+id/yourIDIs"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"/>
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="Password"
+                    android:id="@+id/textPwd"
+                    android:layout_below="@+id/yourIDIs"
+                    android:layout_alignParentLeft="true"
+                    android:theme="@style/ThemeOverlay.MyAllText"/>
+
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    android:id="@+id/fieldPwd"
+                    android:hint="Password"
+                    android:layout_alignTop="@+id/textPwd"
+                    android:layout_alignParentRight="true"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorBlack"/>
+
+
+
+                <Button
+                    android:id="@+id/btUpdate"
+                    android:text="Update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fieldPwd"
+                    android:layout_alignTop="@+id/checkAgg"
+                    android:layout_alignParentRight="true"
+                    android:theme="@style/ThemeOverlay.MyDarkButton"
+                    android:onClick="registerUser" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

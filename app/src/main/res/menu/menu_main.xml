@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.aaryan.xn8.MainActivity">
+    <!--  its toolbar menu-->
+    <item
+        android:id="@+id/menu_new_email"
+        android:title="@string/action_search"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_action_new_email"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/menu_profile_edit"
+        android:title="@string/edit_profile"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_add_bank_details"
+        android:title="@string/add_bank_details"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_set_location"
+        android:title="@string/set_location"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_log_out"
+        android:title="@string/logout"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_AboutUs"
+        android:title="@string/about_us"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+</menu>

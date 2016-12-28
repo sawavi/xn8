@@ -1,0 +1,92 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="50dp"
+    android:fadeScrollbars="false"
+    tools:context="com.example.aaryan.xn8.OneFragment">
+<!-- FrameLayout replaced by LinearLayout to use ScrollView -->
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+                >
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="@string/firstPara"
+        android:theme="@style/ThemeOverlay.MyInstructionText"
+         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/SecondPara"
+        android:textStyle="bold"
+        android:background="@color/textBackground"
+         />
+<!--   Warning ......? problem solved ? Adding another text like below is getting invisible in UI ,
+        Guess some problem with tab fragment...... leave it for now ...and stick with 2 text and button
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="@string/SecondPara"
+            android:textStyle="bold"
+            android:background="@color/textBackground"
+            />
+-->
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:background="@color/grey_100"
+        >
+            <Button
+                android:id="@+id/btReg"
+                android:text="Register"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="sendRegistration"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+            />
+            <Button
+                android:id="@+id/btLog"
+                android:text="Log In"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                android:onClick="sendLogin"
+
+            />
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
