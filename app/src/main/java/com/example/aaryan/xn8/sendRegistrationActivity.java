@@ -417,9 +417,9 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         //added
         switch (item.getItemId()) {
             case R.id.menu_log_out:
-                firebaseAuth.signOut();
+                //firebaseAuth.signOut();
                 // mUsername = ANONYMOUS;
-                startActivity(new Intent(this, MainActivity.class));
+                //startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

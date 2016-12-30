@@ -178,9 +178,7 @@ public class sendLoginActivity extends AppCompatActivity implements View.OnClick
         //added
         switch (item.getItemId()) {
             case R.id.menu_log_out:
-                firebaseAuth.signOut();
-                // mUsername = ANONYMOUS;
-                startActivity(new Intent(this, MainActivity.class));
+                //no need of log out
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
