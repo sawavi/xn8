@@ -8,7 +8,7 @@
         android:id="@+id/menu_new_email"
         android:title="@string/action_search"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_action_new_email"
+        android:icon="@drawable/ic_action_new_email_color"
         app:showAsAction="ifRoom" />
 
 

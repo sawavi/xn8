@@ -11,6 +11,7 @@ package com.example.aaryan.xn8;
 import com.google.firebase.auth.FirebaseAuth;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     private FirebaseAuth firebaseAuth;
-
+    basicClass baseClass;
 
 
 
@@ -58,17 +59,26 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        //simply manipulating tabs;   have set style
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_blue);
+        //tabLayout.setTabTextColors(R.color.textColorPrimary,R.color.colorPrimaryDark);
+        //tabLayout.getTabAt(1).setText("eBank");
+        //tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#038ad4"));
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
 
 
 
-        basicClass baseClass =new basicClass();
+        baseClass =new basicClass();
 
         if (baseClass.isUserLogedIn() == false) {
 
             Toast.makeText(this,"mainActivity: Pls do register yourself.",Toast.LENGTH_LONG).show();
+
+
+
 
         } else {
 
@@ -104,12 +114,21 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menu_log_out:
+                if (baseClass.isUserLogedIn() == false){
+
+                }else{
                 firebaseAuth.signOut();
-                // mUsername = ANONYMOUS;
-             //   startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
+                finish();}
                 return true;
             case R.id.menu_profile_edit:
-             //   startActivity(new Intent(this, editUserProfileActivity.class));
+                if (baseClass.isUserLogedIn() == false){
+
+                }else{
+
+                startActivity(new Intent(this, editUserProfileActivity.class));
+                finish();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -119,9 +138,9 @@ public class MainActivity extends AppCompatActivity {
     //  method used by tabs
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new OneFragment(), "HOME");
-        adapter.addFragment(new TwoFragment(), "eBank");
-        adapter.addFragment(new ThreeFragment(), "eToken");
+        adapter.addFragment(new OneFragment(), "");
+        adapter.addFragment(new TwoFragment(), "eBANK");
+        adapter.addFragment(new ThreeFragment(), "eTOKEN");
         adapter.addFragment(new FourFragment(), "ATMs");
      //   adapter.addFragment(new FiveFragment(), "Message");
 
