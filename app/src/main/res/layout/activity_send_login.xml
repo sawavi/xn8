@@ -10,12 +10,13 @@
     android:fadeScrollbars="false"
     tools:context="com.example.aaryan.xn8.sendLoginActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
         >
-
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,54 +42,51 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="76dp"
-
-
-            >
+            android:paddingTop="10dp"
+            android:background="@color/grey_100">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Welcome"
                 android:id="@+id/textWelcome"
-                android:layout_gravity="center"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:theme="@style/ThemeOverlay.MyTitleText"
-                android:paddingBottom="50dp" />
+                android:paddingBottom="10dp" />
 
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Enter ID"
                 android:id="@+id/textID"
-                android:layout_alignTop="@+id/fieldID"
-                android:layout_toLeftOf="@+id/textWelcome"
-                android:textSize="15dp"
-                android:textColor="@color/colorBlack"/>
+                android:layout_below="@+id/textWelcome"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="15dp"
+                android:theme="@style/ThemeOverlay.MyAllText"/>
 
             <EditText
                 android:layout_width="200dp"
                 android:layout_height="40dp"
                 android:hint="Your ID"
                 android:id="@+id/fieldID"
-                android:layout_below="@+id/textWelcome"
+                android:layout_alignTop="@+id/textID"
                 android:layout_alignParentRight="true"
-                android:textSize="15dp"
+                android:textSize="14sp"
                 android:textColor="@color/colorBlack"/>
 
 
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Password"
                 android:id="@+id/textPwd"
-                android:layout_alignBottom="@+id/fieldPwd"
-                android:layout_alignRight="@+id/textID"
-                android:textSize="15dp"
-                android:textColor="@color/colorBlack"/>
+                android:layout_below="@+id/textID"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="15dp"
+                android:theme="@style/ThemeOverlay.MyAllText"/>
 
 
             <EditText
@@ -98,9 +96,9 @@
                 android:ems="10"
                 android:id="@+id/fieldPwd"
                 android:hint="Password"
-                android:layout_below="@+id/fieldID"
-                android:layout_alignLeft="@+id/fieldID"
-                android:textSize="15dp"
+                android:layout_alignTop="@+id/textPwd"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
                 android:textColor="@color/colorBlack"/>
 
 
@@ -111,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:text="Resend Password"
                 android:id="@+id/btResendPwd"
-                android:layout_below="@+id/fieldPwd"
+                android:layout_below="@+id/textPwd"
                 android:layout_alignParentLeft="true"
                 android:layout_marginTop="10dp"
                 android:theme="@style/ThemeOverlay.MyDarkButton"
@@ -150,5 +148,5 @@
         </RelativeLayout>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

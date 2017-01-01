@@ -62,6 +62,7 @@ public class OneFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), sendRegistrationActivity.class);
                 startActivity(intent);
+
             }
         });
 

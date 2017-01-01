@@ -21,10 +21,26 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- Styling Tabs in fragmentTwo -->
+    <style name="AppTheme.TabStyleTwo" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/AppTheme.TextStyleTwo</item>
+        <item name="tabTextColor">#979797</item>
+        <item name="tabSelectedTextColor">#038ad4</item>
+        <!--<item name="tabIndicatorColor">@color/primaryDark</item>-->
+        <item name="tabIndicatorHeight">0dp</item>
+        <item name="android:background">#FFFFFF</item>
+</style>
+
+<style name="AppTheme.TextStyleTwo" parent="TextAppearance.Design.Tab">
+    <item name="android:textSize">12sp</item>
+    <item name="textAllCaps">false</item>
+</style>
 
 
 
-    <!-- Styling ActionBar -->
+
+
+<!-- Styling ActionBar -->
     <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -60,7 +76,7 @@
 
     <style name="ThemeOverlay.MyTitleText" parent="ThemeOverlay.AppCompat.Dark">
         <item name="android:gravity">center</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/blue_shade1</item>
     </style>

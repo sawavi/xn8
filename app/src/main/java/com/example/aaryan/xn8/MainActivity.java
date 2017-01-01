@@ -37,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     basicClass baseClass;
 
-
+// TODO: remove not needed frgaments like fragmentfive
+    //TODO:make sub frgament load correctly by creating instance in mother activity and calling instance in fragment OnCreate()
+    //TODO:
 
 
     @Override
@@ -74,17 +76,9 @@ public class MainActivity extends AppCompatActivity {
         baseClass =new basicClass();
 
         if (baseClass.isUserLogedIn() == false) {
-
             Toast.makeText(this,"mainActivity: Pls do register yourself.",Toast.LENGTH_LONG).show();
-
-
-
-
         } else {
-
-
 ///IMP: load user data and profile here; if user signed in
-
             Toast.makeText(this ,"mainActivity: Else user signed in",Toast.LENGTH_LONG).show();
         }
     }

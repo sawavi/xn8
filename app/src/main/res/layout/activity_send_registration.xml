@@ -214,12 +214,14 @@
                 android:theme="@style/ThemeOverlay.MyTitleText"
                 android:paddingBottom="10dp"/>
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Your ID is "
                 android:id="@+id/yourIDIs"
                 android:layout_below="@+id/textSetPwd"
                 android:layout_alignParentLeft="true"
+                android:paddingBottom="15dp"
+                android:paddingTop="10dp"
                 android:theme="@style/ThemeOverlay.MyAllText"/>
 
             <EditText
@@ -233,12 +235,13 @@
                 android:textColor="@color/colorBlack"/>
 
             <TextView
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Password"
                 android:id="@+id/textPwd"
                 android:layout_below="@+id/yourIDIs"
                 android:layout_alignParentLeft="true"
+                android:paddingBottom="15dp"
                 android:theme="@style/ThemeOverlay.MyAllText"/>
 
 
@@ -257,7 +260,7 @@
 
             <CheckBox android:id="@+id/checkAgg"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:textColor="@color/blue_shade1"
                 android:text="Accept Agreement"
                 android:layout_below="@+id/fieldPwd"
