@@ -9,13 +9,16 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class userProfileModel {
 
     private String UserID;
+    private String yourIdIs;
+    private String emailId;
+    private String passWord;
+
     private String firstName;
     private String lastName;
     private double mobileNumber;
-    private String emailId;
     private String panCard;
     private String aadhaarCard;
-    private String yourIdIs;
+
 
 
     // Default constructor required for calls to
@@ -31,6 +34,9 @@ public class userProfileModel {
 
     public String getYourIdIs() {    return yourIdIs;      }
     public void setYourIdIs(String yourIdIs) {    this.yourIdIs = yourIdIs;      }
+
+    public String getPassWord() {    return passWord;      }
+    public void setPassWord(String spassWord) {    this.passWord = spassWord;      }
 
 
     public String getFirstName() {   return firstName;    }

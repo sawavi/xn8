@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
 // TODO: remove not needed frgaments like fragmentfive
     //TODO:make sub frgament load correctly by creating instance in mother activity and calling instance in fragment OnCreate()
-    //TODO:
+    //??????done?? moved some code form onCreateView() to onCreate() , so fragments get crated before the View
+    //TODO:make password new field to send via email id
+    //done
 
 
     @Override
@@ -56,7 +58,11 @@ public class MainActivity extends AppCompatActivity {
         //it showing back arrow on main activity ,instead of logo
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         viewPager = (ViewPager) findViewById(R.id.viewpager);
+        //sub-fragments view was loading very slowly, increasing limit solved this, i guess
+        //viewPagerTwo.setOffscreenPageLimit(5); preloads fragment views , by default its set to one
+        viewPager.setOffscreenPageLimit(5);
         setupViewPager(viewPager);
+
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);

@@ -44,7 +44,6 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
     //defining view objects
     private EditText editTextPassword;
     private EditText editTextYourIdIs;
-
     private EditText editTextFirstName;
     private EditText editTextLastName;
     private EditText editTextMobNum;
@@ -52,14 +51,17 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
     private EditText editTextPanNum;
     private EditText editTextAadhaarNum;
 
+
+    private String firePassword;
+    private String mVarYourIdIs;
     private String mVarFirstName;
     private String mVarLastName;
     private double mVarMobNum;
     private String mVarEmailId;
     private String mVarPanNum;
     private String mVarAadhaarNum;
+
     private boolean mVarCardToggle;
-    private String mVarYourIdIs;
 
 
     private Button buttonSubmit;
@@ -185,6 +187,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         localUser.setAadhaarCard(mVarAadhaarNum);
         localUser.setYourIdIs(mVarYourIdIs);
         localUser.setUID(mVarLocalUserId);
+        localUser.setUID(firePassword);
 
         //mFirebaseDatabase.child("users").push().setValue(localUser);
 
@@ -214,7 +217,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
 
         //String fireEmail = editTextEmail.getText().toString().trim();
         String fireEmail;
-        String firePassword  = editTextPassword.getText().toString().trim();
+        firePassword  = editTextPassword.getText().toString().trim();
 
 
         mVarFirstName = editTextFirstName.getText().toString().trim();

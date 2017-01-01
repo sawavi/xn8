@@ -21,6 +21,7 @@ public class TwoFragment extends Fragment {
     private View view;
     private ViewPager viewPagerTwo;
     private TabLayout tabLayout;
+    private TwoFragment.ViewPagerAdapter adapter;
 
     public TwoFragment() {
         // Required empty public constructor
@@ -28,7 +29,15 @@ public class TwoFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        //moved code from setupViewPager()
+        adapter = new TwoFragment.ViewPagerAdapter(getFragmentManager());
+        adapter.addFragment(new TwoFragmentOne(), "Add Bank Details");
+        adapter.addFragment(new TwoFragmentTwo(), "Deposit");
+        adapter.addFragment(new TwoFragmentThree(), "Withdrawal");
+        adapter.addFragment(new TwoFragmentFour(), "DD");
     }
 
     @Override
@@ -39,6 +48,9 @@ public class TwoFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_two, container, false);
 
         viewPagerTwo = (ViewPager) view.findViewById(R.id.viewpagerFragTwo);
+        //sub-fragments view was loading very slowly, increasing limit solved this, i guess
+        //viewPagerTwo.setOffscreenPageLimit(5); preloads fragment views , by default its set to one
+        viewPagerTwo.setOffscreenPageLimit(5);
         setupViewPager(viewPagerTwo);
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs2);
@@ -66,12 +78,14 @@ public class TwoFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         //IMP: unlike Activity;in fragment use below code ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         //
+    /*  Simply moved below code to OnCreate(); and made adapter as global variable ; lets see if it loads fragments faster or not
+
         TwoFragment.ViewPagerAdapter adapter = new TwoFragment.ViewPagerAdapter(getFragmentManager());
         adapter.addFragment(new TwoFragmentOne(), "Add Bank Details");
         adapter.addFragment(new TwoFragmentTwo(), "Deposit");
         adapter.addFragment(new TwoFragmentThree(), "Withdrawal");
         adapter.addFragment(new TwoFragmentFour(), "DD");
-        //adapter.addFragment(new FiveFragment(), "Other");
+    */    //adapter.addFragment(new FiveFragment(), "Other");
         //adapter.addFragment(new FiveFragment(), "anOther");
 
         viewPager.setAdapter(adapter);

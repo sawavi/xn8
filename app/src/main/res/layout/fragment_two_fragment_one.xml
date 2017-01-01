@@ -23,25 +23,109 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
             android:paddingTop="20dp"
             android:background="@color/grey_100" >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Your Bank Account Details Of Home Branch. "
+                android:text="Add Bank Account Details. "
                 android:id="@+id/textAddBankDetails"
                 android:layout_alignParentLeft="true"
                 android:theme="@style/ThemeOverlay.MyInstructionText"
-                android:paddingBottom="10dp"/>
+                android:paddingBottom="10dp" />
+
+
+            <CheckBox android:id="@+id/checkCurrent"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/blue_shade1"
+                android:text="Current Account"
+                android:layout_below="@+id/textAddBankDetails"
+                android:layout_alignParentLeft="true"
+                android:textSize="14sp" />
+
+            <CheckBox android:id="@+id/checkSaving"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/blue_shade1"
+                android:text="Saving Account"
+                android:layout_alignTop="@+id/checkCurrent"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:paddingRight="10dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Account No. :"
+                android:id="@+id/textAccNum"
+                android:layout_below="@+id/checkCurrent"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="15dp"
+                android:theme="@style/ThemeOverlay.MyAllText"/>
+
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:id="@+id/fieldAccNum"
+                android:hint="Enter Account Number"
+                android:layout_alignTop="@+id/textAccNum"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Debit/Credit Card No.:"
+                android:id="@+id/textCardNum"
+                android:layout_below="@+id/textAccNum"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="15dp"
+                android:theme="@style/ThemeOverlay.MyAllText"/>
+
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:id="@+id/fieldCardNum"
+                android:hint="Debit/Credit Card Number"
+                android:layout_alignTop="@+id/textCardNum"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="IFSC Code :"
+                android:id="@+id/textIFSCCode"
+                android:layout_below="@+id/textCardNum"
+                android:layout_alignParentLeft="true"
+                android:paddingBottom="15dp"
+                android:theme="@style/ThemeOverlay.MyAllText"/>
+
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:id="@+id/fieldIFSCCode"
+                android:hint="Enter Bank IFSC Code"
+                android:layout_alignTop="@+id/textIFSCCode"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:textColor="@color/colorBlack"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Bank Name:"
                 android:id="@+id/textBankName"
-                android:layout_below="@+id/textAddBankDetails"
+                android:layout_below="@+id/textIFSCCode"
                 android:layout_alignParentLeft="true"
                 android:paddingBottom="15dp"
                 android:theme="@style/ThemeOverlay.MyAllText"/>
@@ -56,50 +140,67 @@
                 android:textSize="14sp"
                 android:textColor="@color/colorBlack"/>
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="IFSC Code :"
-                android:id="@+id/textIFSCCode"
+                android:text="Bank Branch:"
+                android:id="@+id/textBankBranch"
                 android:layout_below="@+id/textBankName"
                 android:layout_alignParentLeft="true"
                 android:paddingBottom="15dp"
                 android:theme="@style/ThemeOverlay.MyAllText"/>
 
-
             <EditText
                 android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:id="@+id/fieldIFSCCode"
-                android:hint="Enter Bank IFSCCode"
-                android:layout_alignTop="@+id/textIFSCCode"
+                android:hint="Enter Bank Branch"
+                android:id="@+id/fieldBankBranch"
+                android:layout_alignTop="@+id/textBankBranch"
                 android:layout_alignParentRight="true"
                 android:textSize="14sp"
                 android:textColor="@color/colorBlack"/>
 
 
-            <CheckBox android:id="@+id/checkAgg"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:textColor="@color/blue_shade1"
-                android:text="Accept Agreement"
-                android:layout_below="@+id/textIFSCCode"
-                android:layout_alignParentLeft="true"
-                android:textSize="14sp"
-                android:onClick="onCheckboxClicked" />
-
-
 
             <Button
-                android:id="@+id/btSubmit"
-                android:text="Submit"
+                android:id="@+id/btAddMore"
+                android:text="Add One More AC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/fieldPwd"
-                android:layout_alignTop="@+id/checkAgg"
+                android:layout_below="@+id/textBankBranch"
+                android:layout_alignParentLeft="true"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                />
+
+            <Button
+                android:id="@+id/btSave"
+                android:text="Save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btAddMore"
                 android:layout_alignParentRight="true"
                 android:theme="@style/ThemeOverlay.MyDarkButton"
-                android:onClick="registerUser" />
+                />
+            <Button
+                android:id="@+id/btAddMore1"
+                android:text="Add One More AC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btAddMore"
+                android:layout_alignParentLeft="true"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                />
+
+            <Button
+                android:id="@+id/btSave1"
+                android:text="Save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btAddMore1"
+                android:layout_alignParentRight="true"
+                android:theme="@style/ThemeOverlay.MyDarkButton"
+                />
         </RelativeLayout>
 
     </LinearLayout>
