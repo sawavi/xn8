@@ -34,10 +34,10 @@ public class TwoFragment extends Fragment {
 
         //moved code from setupViewPager()
         adapter = new TwoFragment.ViewPagerAdapter(getFragmentManager());
-        adapter.addFragment(new TwoFragmentOne(), "Add Bank Details");
-        adapter.addFragment(new TwoFragmentTwo(), "Deposit");
-        adapter.addFragment(new TwoFragmentThree(), "Withdrawal");
-        adapter.addFragment(new TwoFragmentFour(), "DD");
+        adapter.addFragment(new TwoFragmentOne(), "Add Bank Accounts");
+        adapter.addFragment(new TwoFragmentTwo(), "1.Fill In Slips");
+        adapter.addFragment(new TwoFragmentThree(), "2.Choose Bank");
+        adapter.addFragment(new TwoFragmentFour(), "3.Get Tokens");
     }
 
     @Override
@@ -85,9 +85,7 @@ public class TwoFragment extends Fragment {
         adapter.addFragment(new TwoFragmentTwo(), "Deposit");
         adapter.addFragment(new TwoFragmentThree(), "Withdrawal");
         adapter.addFragment(new TwoFragmentFour(), "DD");
-    */    //adapter.addFragment(new FiveFragment(), "Other");
-        //adapter.addFragment(new FiveFragment(), "anOther");
-
+    */
         viewPager.setAdapter(adapter);
     }
     //  method used by tabs

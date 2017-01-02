@@ -19,6 +19,11 @@ import android.view.ViewGroup;
  */
 public class TwoFragmentTwo extends Fragment {
 
+    /**
+     * soft keyboard was overlapping fragment edittext * additionaly android:paddingbottom:"50dp" was hiding exta 50dp space whenever softkeyboard poped up
+     * removed android:paddingBottom="50dp"  and added android:windowSoftInputMode="stateHidden|adjustPan" in AndroidMenifest.xml
+     */
+
     public TwoFragmentTwo() {
         // Required empty public constructor
     }

@@ -22,7 +22,7 @@
         <activity
             android:name=".sendRegistrationActivity"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.aaryan.xn8.MainActivity" />
@@ -30,7 +30,7 @@
         <activity
             android:name=".sendLoginActivity"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.aaryan.xn8.MainActivity" />
@@ -38,7 +38,7 @@
         <activity
             android:name=".editUserProfileActivity"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.aaryan.xn8.MainActivity"/>

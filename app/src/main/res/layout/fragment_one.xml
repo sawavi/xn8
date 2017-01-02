@@ -64,7 +64,7 @@
         >
             <Button
                 android:id="@+id/btReg"
-                android:text="Register"
+                android:text="REGISTER"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,7 +73,7 @@
             />
             <Button
                 android:id="@+id/btLog"
-                android:text="Log In"
+                android:text="LOG IN"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

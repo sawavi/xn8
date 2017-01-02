@@ -107,7 +107,7 @@
             <Button
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Resend Password"
+                android:text="Forgot Password"
                 android:id="@+id/btResendPwd"
                 android:layout_below="@+id/textPwd"
                 android:layout_alignParentLeft="true"
@@ -117,20 +117,11 @@
             <Button
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="LOG IN >>"
                 android:id="@+id/btLogin"
                 android:theme="@style/ThemeOverlay.MyDarkButton"
                 android:layout_alignTop="@+id/btResendPwd"
                 android:layout_alignParentRight="true"/>
-
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="56dp"
-                android:id="@+id/loginErrorMsg"
-                android:textColor="@color/colorBlack"
-                android:layout_below="@+id/btResendPwd"
-                android:layout_alignParentLeft="true"/>
 
 
 
@@ -140,8 +131,8 @@
                 android:text="Note: PAN or Aadhaar Card Number Is Your ID As Entered During Registration"
                 android:id="@+id/textNote"
                 android:layout_gravity="center"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/btResendPwd"
+                android:layout_alignParentLeft="true"
                 android:theme="@style/ThemeOverlay.MyInstructionText"
                 />
 

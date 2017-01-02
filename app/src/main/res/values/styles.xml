@@ -71,6 +71,7 @@
         <item name="android:layout_marginRight">4dp</item>
         <item name="android:layout_marginLeft">4dp</item>
         <item name="android:textSize">14sp</item>
+        <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/blue_shade1</item>
     </style>
 

@@ -5,16 +5,14 @@
     android:layout_height="match_parent"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="50dp"
     android:fadeScrollbars="false"
+    android:orientation="vertical"
     tools:context="com.example.aaryan.xn8.TwoFragmentOne">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         >
         <!-- TODO: Update blank fragment layout -->
@@ -29,10 +27,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Bank Account Details. "
+                android:text="Add Your Bank Account Details."
                 android:id="@+id/textAddBankDetails"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:theme="@style/ThemeOverlay.MyInstructionText"
+                android:theme="@style/ThemeOverlay.MyTitleText"
                 android:paddingBottom="10dp" />
 
 
@@ -42,6 +41,7 @@
                 android:textColor="@color/blue_shade1"
                 android:text="Current Account"
                 android:layout_below="@+id/textAddBankDetails"
+                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:textSize="14sp" />
 
@@ -163,44 +163,17 @@
 
 
 
-            <Button
-                android:id="@+id/btAddMore"
-                android:text="Add One More AC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textBankBranch"
-                android:layout_alignParentLeft="true"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
-                />
 
             <Button
                 android:id="@+id/btSave"
-                android:text="Save"
+                android:text="Save >>"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/btAddMore"
+                android:layout_below="@+id/textBankBranch"
                 android:layout_alignParentRight="true"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
-                />
-            <Button
-                android:id="@+id/btAddMore1"
-                android:text="Add One More AC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btAddMore"
-                android:layout_alignParentLeft="true"
                 android:theme="@style/ThemeOverlay.MyDarkButton"
                 />
 
-            <Button
-                android:id="@+id/btSave1"
-                android:text="Save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/btAddMore1"
-                android:layout_alignParentRight="true"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
-                />
         </RelativeLayout>
 
     </LinearLayout>
