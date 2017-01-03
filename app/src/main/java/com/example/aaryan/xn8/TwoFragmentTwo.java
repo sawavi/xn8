@@ -24,6 +24,10 @@ public class TwoFragmentTwo extends Fragment {
      * removed android:paddingBottom="50dp"  and added android:windowSoftInputMode="stateHidden|adjustPan" in AndroidMenifest.xml
      */
 
+    // TODO: imp : transaction id on slip>>>
+    // TODO: deposited in branch : the moment user select tab:choose bank
+    // ....deposited in branch and transaction id must append and show an uneditable Slip only after user doen't present he can delete slip
+
     public TwoFragmentTwo() {
         // Required empty public constructor
     }
