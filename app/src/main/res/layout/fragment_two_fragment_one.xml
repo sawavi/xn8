@@ -3,177 +3,228 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:background="@color/textColorPrimary"
     android:fadeScrollbars="false"
     android:orientation="vertical"
     tools:context="com.example.aaryan.xn8.TwoFragmentOne">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        >
+        android:orientation="vertical"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
         <!-- TODO: Update blank fragment layout -->
         <RelativeLayout
             android:id="@+id/addBankLayout"
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:background="@color/grey_100" >
+            android:background="@color/grey_100"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
             <TextView
+                android:id="@+id/textAddBankDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add Your Bank Account Details."
-                android:id="@+id/textAddBankDetails"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
-                android:theme="@style/ThemeOverlay.MyTitleText"
-                android:paddingBottom="10dp" />
+                android:layout_alignParentStart="true"
+                android:paddingBottom="10dp"
+                android:text="Add Your Bank Account Details."
+                android:theme="@style/ThemeOverlay.MyTitleText" />
 
 
-            <CheckBox android:id="@+id/checkCurrent"
+            <CheckBox
+                android:id="@+id/checkCurrent"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textColor="@color/blue_shade1"
-                android:text="Current Account"
-                android:layout_below="@+id/textAddBankDetails"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textAddBankDetails"
+                android:text="Current Account"
+                android:textColor="@color/blue_shade1"
                 android:textSize="14sp" />
 
-            <CheckBox android:id="@+id/checkSaving"
+            <CheckBox
+                android:id="@+id/checkSaving"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textColor="@color/blue_shade1"
-                android:text="Saving Account"
+                android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/checkCurrent"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp"
+                android:text="Saving Account"
+                android:textColor="@color/blue_shade1"
+                android:textSize="14sp" />
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Account No. :"
                 android:id="@+id/textAccNum"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/checkCurrent"
-                android:layout_alignParentLeft="true"
                 android:paddingBottom="15dp"
-                android:theme="@style/ThemeOverlay.MyAllText"/>
+                android:text="Account No. :"
+                android:theme="@style/ThemeOverlay.MyAllText" />
 
 
             <EditText
-                android:layout_width="200dp"
-                android:layout_height="40dp"
                 android:id="@+id/fieldAccNum"
-                android:hint="Enter Account Number"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/textAccNum"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:textColor="@color/colorBlack"/>
+                android:hint="Enter Account Number"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Debit/Credit Card No.:"
                 android:id="@+id/textCardNum"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/textAccNum"
-                android:layout_alignParentLeft="true"
                 android:paddingBottom="15dp"
-                android:theme="@style/ThemeOverlay.MyAllText"/>
+                android:text="Debit/Credit Card No.:"
+                android:theme="@style/ThemeOverlay.MyAllText" />
 
 
             <EditText
-                android:layout_width="200dp"
-                android:layout_height="40dp"
                 android:id="@+id/fieldCardNum"
-                android:hint="Debit/Credit Card Number"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/textCardNum"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:textColor="@color/colorBlack"/>
+                android:hint="Debit/Credit Card Number"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="IFSC Code :"
                 android:id="@+id/textIFSCCode"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/textCardNum"
-                android:layout_alignParentLeft="true"
                 android:paddingBottom="15dp"
-                android:theme="@style/ThemeOverlay.MyAllText"/>
+                android:text="IFSC Code :"
+                android:theme="@style/ThemeOverlay.MyAllText" />
 
 
             <EditText
-                android:layout_width="200dp"
-                android:layout_height="40dp"
                 android:id="@+id/fieldIFSCCode"
-                android:hint="Enter Bank IFSC Code"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/textIFSCCode"
-                android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:textColor="@color/colorBlack"/>
+                android:hint="Enter Bank IFSC Code"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Bank Name:"
                 android:id="@+id/textBankName"
-                android:layout_below="@+id/textIFSCCode"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textIFSCCode"
                 android:paddingBottom="15dp"
-                android:theme="@style/ThemeOverlay.MyAllText"/>
+                android:text="Bank Name:"
+                android:theme="@style/ThemeOverlay.MyAllText" />
 
             <EditText
+                android:id="@+id/fieldBankName"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:hint="Enter Bank Name"
-                android:id="@+id/fieldBankName"
-                android:layout_alignTop="@+id/textBankName"
                 android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:textColor="@color/colorBlack"/>
+                android:layout_alignTop="@+id/textBankName"
+                android:hint="Enter Bank Name"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
 
 
             <TextView
+                android:id="@+id/textBankBranch"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="Bank Branch:"
-                android:id="@+id/textBankBranch"
-                android:layout_below="@+id/textBankName"
                 android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textBankName"
                 android:paddingBottom="15dp"
-                android:theme="@style/ThemeOverlay.MyAllText"/>
+                android:text="Bank Branch:"
+                android:theme="@style/ThemeOverlay.MyAllText" />
 
             <EditText
+                android:id="@+id/fieldBankBranch"
                 android:layout_width="200dp"
                 android:layout_height="40dp"
-                android:hint="Enter Bank Branch"
-                android:id="@+id/fieldBankBranch"
-                android:layout_alignTop="@+id/textBankBranch"
                 android:layout_alignParentRight="true"
-                android:textSize="14sp"
-                android:textColor="@color/colorBlack"/>
+                android:layout_alignTop="@+id/textBankBranch"
+                android:hint="Enter Bank Branch"
+                android:textColor="@color/colorBlack"
+                android:textSize="14sp" />
 
 
+            <TextView
+                android:id="@+id/textAccAdded"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textBankBranch"
+                android:paddingBottom="15dp"
+                android:text=""
+                android:theme="@style/ThemeOverlay.MyInstructionText" />
 
 
             <Button
                 android:id="@+id/btSave"
-                android:text="Save >>"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textBankBranch"
                 android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/textAccAdded"
+                android:text="Save >>"
                 android:theme="@style/ThemeOverlay.MyDarkButton"
                 />
 
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/tipsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addBankLayout"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey_100"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textTip1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Tip 1: Simply adding as many Accounts as you have, will help in 'AutoFill' Slips and other data."
+                android:theme="@style/ThemeOverlay.MyInstructionText" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/emptyBottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/tipsLayout"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey_100"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+
+                android:text="_"
+                android:textColor="@color/textColorPrimary" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="900dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="14dp"
         android:paddingRight="14dp">
@@ -388,6 +388,49 @@
 
         </RelativeLayout>
 
+
+        <LinearLayout
+            android:id="@+id/tipsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fillSlipLayout"
+            android:background="@color/grey_100"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:id="@+id/textTip1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Tip 1: Simply typing Denomination and total amount will 'AutoFill' Pieces"
+                android:theme="@style/ThemeOverlay.MyInstructionText" />
+
+            <TextView
+                android:id="@+id/textTip2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@+id/textTip1"
+                android:text="Tip 2: Simply typing 'Self' in 'Account Name' will 'AutoFill' your account details"
+                android:theme="@style/ThemeOverlay.MyInstructionText" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/emptyBottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/tipsLayout"
+            android:background="@color/grey_100"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
+            <TextView
+                android:id="@+id/textEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+
+                android:text="_"
+                android:textColor="@color/textColorPrimary" />
+        </LinearLayout>
     </RelativeLayout>
 
 </ScrollView>

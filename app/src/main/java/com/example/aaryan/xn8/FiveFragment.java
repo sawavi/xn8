@@ -31,6 +31,174 @@ public class FiveFragment extends Fragment {
 
     public FiveFragment() {
         // Required empty public constructor
+
+
+
+        // TODO: working example of fragment inserting data to firebase
+
+/**
+ * public class TwoFragmentOne extends Fragment implements View.OnClickListener {
+
+ //defining view objects
+ private EditText editTextTextAccNum;
+ ///
+ private EditText editTextYourIdIs;
+ private EditText editTextFirstName;
+ private EditText editTextLastName;
+ private EditText editTextMobNum;
+ private EditText editTextEmail;
+ private EditText editTextPanNum;
+ private EditText editTextAadhaarNum;
+
+
+ private String mVarAccNum;
+ /////
+
+ private String mVarLocalUserId;  //private String UserID;
+ private String accType;
+ private String debitCardNum;
+
+ private String ifscCodeNum;
+ private String bankName;
+ private String branchName;
+
+ private boolean mVarCardToggle;
+
+
+ private Button buttonSave;
+ private ProgressDialog progressDialog;
+
+
+ //defining firebaseauth object
+
+ private String authExcep;
+
+
+ private DatabaseReference mDatabaseReference;
+ private FirebaseDatabase mFirebaseDatabase;
+ private FirebaseUser mFirebaseUser;
+ private FirebaseAuth mFirebaseAuth;
+
+
+
+
+ public TwoFragmentOne() {
+ // Required empty public constructor
+ }
+
+
+ @Override
+ public void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+
+ }
+
+ @Override
+ public View onCreateView(LayoutInflater inflater, ViewGroup container,
+ Bundle savedInstanceState) {
+ // Inflate the layout for this fragment
+ View viewTwo = inflater.inflate(R.layout.fragment_two_fragment_one, container, false);
+
+ //TODO: look into mFirebaseAuth and firebaseUser later
+ mFirebaseAuth = FirebaseAuth.getInstance();          //initializing firebase auth object
+ mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+ mFirebaseDatabase = FirebaseDatabase.getInstance();
+ mDatabaseReference  = mFirebaseDatabase.getReference("addBankAccounts");  // get reference to 'users' node
+
+
+ editTextTextAccNum = (EditText) viewTwo.findViewById(R.id.fieldAccNum);
+
+ buttonSave = (Button) viewTwo.findViewById(R.id.btSave);
+
+ progressDialog = new ProgressDialog(getActivity());  //attaching listener to button
+ buttonSave.setOnClickListener(this);  //
+
+
+
+ return viewTwo;
+ }
+
+ // TODO:
+
+
+ @Override
+ public void onClick(View v) {
+
+ switch(v.getId()){
+ case R.id.btSave:
+ userAddAccValidate();
+ break;
+
+ //    case R.id.btResendPwd:
+ //        ResendUserPwd();
+ //        break;
+ // TODO:
+ }
+
+
+ }
+
+ private void saveUserAddAccData(){
+
+ userAccountModel localUser =new userAccountModel();
+ localUser.setAccNum(mVarAccNum);
+
+ //  DatabaseReference childRef = mDatabaseReference;
+ //   childRef.child(mVarLocalUserId).setValue(localUser);
+
+
+ if (mFirebaseUser == null) {
+ Toast.makeText(getActivity(),"You Are Not Logged In",Toast.LENGTH_LONG).show();
+
+ } else {
+ mVarLocalUserId = mFirebaseUser.getUid();
+ mDatabaseReference.child(mVarLocalUserId).push().setValue(localUser);
+ buttonSave.setText("Add One More");
+ }
+
+ }
+
+ private void userAddAccValidate(){
+
+ mVarAccNum = editTextTextAccNum.getText().toString().trim();
+
+ if(TextUtils.isEmpty(mVarAccNum)){
+ Toast.makeText(getActivity(),"Please Enter Account Number",Toast.LENGTH_LONG).show();
+ return;
+ }
+
+ saveUserAddAccData();
+ }
+ }
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     /**

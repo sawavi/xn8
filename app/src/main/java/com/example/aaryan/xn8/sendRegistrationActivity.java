@@ -187,7 +187,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         localUser.setAadhaarCard(mVarAadhaarNum);
         localUser.setYourIdIs(mVarYourIdIs);
         localUser.setUID(mVarLocalUserId);
-        localUser.setUID(firePassword);
+        localUser.setPassWord(firePassword);
 
         //mFirebaseDatabase.child("users").push().setValue(localUser);
 
@@ -203,8 +203,8 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         //childRef.setValue(mVarFirstName);
 
         //adds data to perticularly mentioned node-fields
-        //childRef.child("mVarFirstName").setValue(localUser.getFirstName());
-        //childRef.child("mVarLastName").setValue(localUser.getLastName());
+        //childRef.child("mVarFirstName").setValue(localUser.getIfscCodeNum());
+        //childRef.child("mVarLastName").setValue(localUser.getBankName());
 
         // adds whole object into database
         //childRef.child(mVarLocalUserId).setValue(localUser);

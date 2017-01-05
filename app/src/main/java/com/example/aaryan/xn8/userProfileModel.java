@@ -36,7 +36,7 @@ public class userProfileModel {
     public void setYourIdIs(String yourIdIs) {    this.yourIdIs = yourIdIs;      }
 
     public String getPassWord() {    return passWord;      }
-    public void setPassWord(String spassWord) {    this.passWord = spassWord;      }
+    public void setPassWord(String passWord) {    this.passWord = passWord;      }
 
 
     public String getFirstName() {   return firstName;    }
