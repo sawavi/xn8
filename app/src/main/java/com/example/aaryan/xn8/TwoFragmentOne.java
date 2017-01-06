@@ -2,6 +2,7 @@ package com.example.aaryan.xn8;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +39,8 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     private EditText editTextIfscCodeNum;
     private EditText editTextBankName;
     private EditText editTextBranchName;
-
+    private CheckBox checkCur;
+    private CheckBox checkSav;
 
     private String mVarAccNum;
 /////
@@ -97,11 +100,38 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
         editTextIfscCodeNum= (EditText) viewTwo.findViewById(R.id.fieldIFSCCode);
         editTextBankName= (EditText) viewTwo.findViewById(R.id.fieldBankName);
         editTextBranchName= (EditText) viewTwo.findViewById(R.id.fieldBankBranch);
-
+        checkCur =  (CheckBox) viewTwo.findViewById(R.id.checkCurrent);
+        checkSav = (CheckBox) viewTwo.findViewById(R.id.checkSaving);
         buttonSave = (Button) viewTwo.findViewById(R.id.btSave);
 
         progressDialog = new ProgressDialog(getActivity());  //attaching listener to button
         buttonSave.setOnClickListener(this);  //
+
+
+        checkCur.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    checkSav.setChecked(false);
+                    // Code to display your message.
+                }
+            }
+        });
+
+
+        checkSav.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if(isChecked){
+                    checkCur.setChecked(false);
+                    // Code to display your message.
+                }
+            }
+        });
 
 
 
@@ -116,6 +146,8 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
 
         switch(v.getId()){
             case R.id.btSave:
+                progressDialog.setMessage("Adding Account Details, Please Wait...");
+                progressDialog.show();
                 userAddAccValidate();
                 break;
 
@@ -145,37 +177,40 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
 
         if (mFirebaseUser == null) {
             Toast.makeText(getActivity(),"You Are Not Logged In",Toast.LENGTH_LONG).show();
-
+            buttonSave.setEnabled(false);
         } else {
             mVarLocalUserId = mFirebaseUser.getUid();
             mDatabaseReference.child(mVarLocalUserId).push().setValue(localUser);
             buttonSave.setText("Add More");
             textViewAccAdded.setText("Account Added");
+
+            progressDialog.setMessage("Account Details Added" );
+            progressDialog.show();
+
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    progressDialog.dismiss();
+                }
+            }, 3000);
+
         }
 
     }
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
-
         // Check which checkbox was clicked
         switch(view.getId()) {
             case R.id.checkCurrent:
-                if (checked){
-
-
-                }
-                // Put some meat on the sandwich
+                if (checked){}
                 else
-                    // Remove the meat
                     break;
             case R.id.checkSaving:
                 if (checked){}
-                // Cheese me
                 else
-                    // I'm lactose intolerant
                     break;
-                // TODO: Veggie sandwich
         }
     }
     private void userAddAccValidate(){
@@ -191,6 +226,7 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
 
         if (    (((CheckBox) getView().findViewById(R.id.checkCurrent)).isChecked())  ) {
             //setting value   //??check out is it setting in database too??
+            checkSav.setEnabled(false);
             mVarAccType = "Current";
         }
         else{
