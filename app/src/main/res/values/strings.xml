@@ -18,6 +18,15 @@
         EXchange: \t Only at RBI limit Rs.2000 applicable 20/11/2016 12:00AM \nCircular Link:http:gov.com</string>
 
 
+    <string name="textFragOneDone">Step 0: \n\n Add Your  \n Bank Accounts </string>
+    <string name="textFragOneDoneSaved">Account Added</string>
+
+    <string name="textFragTwoDone">Step 1: \n\n Fill Slips \n ( Deposit or Withdrawal or DD) </string>
+    <string name="textFragTwoDoneSaved">Slip Saved</string>
+
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment1">Hello blank fragment 1</string>
     <string name="hello_blank_fragment2">Hello blank fragment 2</string>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollFragTwo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/textColorPrimary"
@@ -11,6 +12,7 @@
     <!-- TODO: 700dp set manually as its not scrolling do something -->
 
     <RelativeLayout
+        android:id="@+id/myLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -377,27 +379,72 @@
 
             </RelativeLayout>
 
-            <Button
-                android:id="@+id/btSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/cashChequeLayout"
-                android:text="Save n Apply >>"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
 
         </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/doneLayout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_100"
+            android:orientation="vertical"
+            android:layout_below="@+id/fillSlipLayout">
+
+
+            <TextView
+                android:id="@+id/textDoneMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Slip Saved, Add More Slips or Proceed to Step:2 "
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:theme="@style/ThemeOverlay.MyDoneText" />
+
+            <Button
+                android:id="@+id/btDoneLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textDoneMsg"
+                android:layout_alignParentLeft="true"
+                android:text="Add More >>"
+                android:theme="@style/ThemeOverlay.MyDoneButton" />
+
+            <Button
+                android:id="@+id/btDoneRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btDoneLeft"
+                android:layout_alignParentRight="true"
+                android:text="Step 2 >>"
+                android:theme="@style/ThemeOverlay.MyDoneButton" />
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/doneLayout"
+            android:text="Save n Apply >>"
+            android:theme="@style/ThemeOverlay.MyDarkButton" />
 
 
         <LinearLayout
             android:id="@+id/tipsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fillSlipLayout"
-            android:background="@color/grey_100"
-            android:orientation="vertical"
+            android:layout_below="@+id/btSave"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:background="@color/grey_100"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textTip1"
@@ -414,15 +461,17 @@
                 android:text="Tip 2: Simply typing 'Self' in 'Account Name' will 'AutoFill' your account details"
                 android:theme="@style/ThemeOverlay.MyInstructionText" />
         </LinearLayout>
-        <LinearLayout
+
+        <RelativeLayout
             android:id="@+id/emptyBottomLayout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_below="@+id/tipsLayout"
-            android:background="@color/grey_100"
-            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
+            android:background="@color/grey_100"
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/textEmpty"
                 android:layout_width="wrap_content"
@@ -430,7 +479,7 @@
 
                 android:text="_"
                 android:textColor="@color/textColorPrimary" />
-        </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
 
 </ScrollView>

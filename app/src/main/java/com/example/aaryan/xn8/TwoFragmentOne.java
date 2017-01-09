@@ -1,10 +1,12 @@
 package com.example.aaryan.xn8;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +37,7 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
 
     //defining view objects
     private EditText editTextAccNum;
-    ///
-    private TextView textViewAccAdded;
+
     private EditText editTextDebitCardNum;
     private EditText editTextIfscCodeNum;
     private EditText editTextBankName;
@@ -42,8 +45,20 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     private CheckBox checkCur;
     private CheckBox checkSav;
 
+    //layout toggling
+
+    private RelativeLayout addBankLayout;
+    private RelativeLayout doneLayout;
+    private ViewGroup.LayoutParams doneParams;
+    private ScrollView myScrollOne;
+    private Button buttonDoneLeft;
+    private Button buttonDoneRight;
+    private TextView textViewDoneMsg;
+
+
+
     private String mVarAccNum;
-/////
+
     private String mVarAccType;
     private String mVarDebitCardNum;
     private String mVarIfscCodeNum;
@@ -67,8 +82,6 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     private FirebaseAuth mFirebaseAuth;
 
 
-
-
     public TwoFragmentOne() {
         // Required empty public constructor
     }
@@ -84,8 +97,8 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View viewTwo = inflater.inflate(R.layout.fragment_two_fragment_one, container, false);
-
+         View viewOne = inflater.inflate(R.layout.fragment_two_fragment_one, container, false);
+        DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
         //TODO: look into mFirebaseAuth and firebaseUser later
         mFirebaseAuth = FirebaseAuth.getInstance();          //initializing firebase auth object
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -94,20 +107,55 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
         mDatabaseReference  = mFirebaseDatabase.getReference("addBankAccounts");  // get reference to 'users' node
 
 
-        editTextAccNum = (EditText) viewTwo.findViewById(R.id.fieldAccNum);
-        textViewAccAdded= (TextView) viewTwo.findViewById(R.id.textAccAdded);
-        editTextDebitCardNum= (EditText) viewTwo.findViewById(R.id.fieldCardNum);
-        editTextIfscCodeNum= (EditText) viewTwo.findViewById(R.id.fieldIFSCCode);
-        editTextBankName= (EditText) viewTwo.findViewById(R.id.fieldBankName);
-        editTextBranchName= (EditText) viewTwo.findViewById(R.id.fieldBankBranch);
-        checkCur =  (CheckBox) viewTwo.findViewById(R.id.checkCurrent);
-        checkSav = (CheckBox) viewTwo.findViewById(R.id.checkSaving);
-        buttonSave = (Button) viewTwo.findViewById(R.id.btSave);
+        editTextAccNum = (EditText) viewOne.findViewById(R.id.fieldAccNum);
+        editTextDebitCardNum= (EditText) viewOne.findViewById(R.id.fieldCardNum);
+        editTextIfscCodeNum= (EditText) viewOne.findViewById(R.id.fieldIFSCCode);
+        editTextBankName= (EditText) viewOne.findViewById(R.id.fieldBankName);
+        editTextBranchName= (EditText) viewOne.findViewById(R.id.fieldBankBranch);
+        checkCur =  (CheckBox) viewOne.findViewById(R.id.checkCurrent);
+        checkSav = (CheckBox) viewOne.findViewById(R.id.checkSaving);
+        buttonSave = (Button) viewOne.findViewById(R.id.btSave);
+
+
+        //layout toggling
+
+        addBankLayout = (RelativeLayout) viewOne.findViewById(R.id.addBankLayout);
+        doneLayout = (RelativeLayout) viewOne.findViewById(R.id.doneLayout);
+        doneParams = doneLayout.getLayoutParams();
+
+        buttonDoneLeft = (Button) viewOne.findViewById(R.id.btDoneLeft);
+        buttonDoneRight = (Button) viewOne.findViewById(R.id.btDoneRight);
+        textViewDoneMsg = (TextView) viewOne.findViewById(R.id.textDoneMsg);
+
+        //layout toggling : setting Scroll to foucus on top
+        myScrollOne = (ScrollView) viewOne.findViewById(R.id.scrollFragOne);
+
+        if (mFirebaseUser == null) {
+            doneParams.height = metrics.heightPixels;
+            doneParams.width = metrics.widthPixels;
+            doneLayout.setBackgroundColor(Color.parseColor("#F5F5F5"));
+            doneLayout.setVisibility(View.VISIBLE);
+
+            myScrollOne.smoothScrollTo(0,0); //excellent solution to set focus on top of reappearing layout
+            addBankLayout.setVisibility(View.GONE);    //View.GONE --disappear element and vacant spcae too
+            buttonSave.setVisibility(View.INVISIBLE);  //View.INVISIBLE --disappear element but keeps space occupied
+
+            //display doneLayout with only text ; buttons gone
+            textViewDoneMsg.setText(getResources().getString(R.string.textFragOneDone));
+            buttonDoneLeft.setVisibility(View.INVISIBLE);
+            buttonDoneRight.setVisibility(View.INVISIBLE);
+
+        }
+
 
         progressDialog = new ProgressDialog(getActivity());  //attaching listener to button
         buttonSave.setOnClickListener(this);  //
 
+        buttonDoneLeft.setOnClickListener(this);//
 
+
+
+        //Simplest way to Toggle CheckBox
         checkCur.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
             @Override
@@ -133,37 +181,28 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
-        return viewTwo;
+        return viewOne;
     }
-
     // TODO:
-
 
     @Override
     public void onClick(View v) {
 
         switch(v.getId()){
             case R.id.btSave:
-                progressDialog.setMessage("Adding Account Details, Please Wait...");
-                progressDialog.show();
-                userAddAccValidate();
+            userAddAccValidate();
                 break;
-
-        //    case R.id.btResendPwd:
-        //        ResendUserPwd();
-        //        break;
+            case R.id.btDoneLeft:
+                reappearAddBankDisplay();
+                break;
             // TODO:
         }
-
-
     }
 
     private void saveUserAddAccData(){
 
-
         userAccountModel localUser =new userAccountModel();
+
         localUser.setAccNum(mVarAccNum);
         localUser.setAccType(mVarAccType);
         localUser.setDebitCardNum(mVarDebitCardNum);
@@ -174,30 +213,50 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
       //  DatabaseReference childRef = mDatabaseReference;
      //   childRef.child(mVarLocalUserId).setValue(localUser);
 
-
-        if (mFirebaseUser == null) {
-            Toast.makeText(getActivity(),"You Are Not Logged In",Toast.LENGTH_LONG).show();
-            buttonSave.setEnabled(false);
-        } else {
             mVarLocalUserId = mFirebaseUser.getUid();
             mDatabaseReference.child(mVarLocalUserId).push().setValue(localUser);
+
             buttonSave.setText("Add More");
-            textViewAccAdded.setText("Account Added");
+
 
             progressDialog.setMessage("Account Details Added" );
             progressDialog.show();
-
-
+            // handler thread used to delay dismis of Dialog by 2 Sec
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {
                     progressDialog.dismiss();
                 }
-            }, 3000);
+            }, 2000);
 
-        }
+        disappearAddBankDisplay();
 
     }
+
+    private void disappearAddBankDisplay(){
+
+        doneParams.height = addBankLayout.getHeight();
+        doneParams.width = addBankLayout.getWidth();
+        doneLayout.setBackgroundColor(Color.parseColor("#F5F5F5"));
+
+        myScrollOne.smoothScrollTo(0,0); //excellent solution to set focus on top of reappearing layout
+        addBankLayout.setVisibility(View.GONE);    //View.GONE --disappear element and vacant spcae too
+        buttonSave.setVisibility(View.INVISIBLE);  //View.INVISIBLE --disappear element but keeps space occupied
+
+        //display doneLayout with two buttons
+        doneLayout.setVisibility(View.VISIBLE);
+        textViewDoneMsg.setText(getResources().getString(R.string.textFragOneDoneSaved));
+
+    }
+
+    private void reappearAddBankDisplay(){
+
+        doneLayout.setVisibility(View.GONE);
+        addBankLayout.setVisibility(View.VISIBLE);
+        buttonSave.setVisibility(View.VISIBLE);
+    }
+
+
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
@@ -216,7 +275,6 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     private void userAddAccValidate(){
 
         mVarAccNum = editTextAccNum.getText().toString().trim();
-       // mVarAccType = editTextAccType.getText().toString().trim();
         mVarDebitCardNum = editTextDebitCardNum.getText().toString().trim();
         mVarIfscCodeNum = editTextIfscCodeNum.getText().toString().trim();
         mVarBankName = editTextBankName.getText().toString().trim();

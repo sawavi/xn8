@@ -33,7 +33,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:paddingBottom="10dp"
-                android:text="Step 3: Choose Slip And Bank to Apply."
+                android:text="Step 2: Choose Slip And Bank to Apply."
                 android:theme="@style/ThemeOverlay.MyTitleText" />
 
             <LinearLayout
@@ -158,6 +158,47 @@
                 android:layout_below="@+id/textBankBranch"
                 android:text="Get Token >>"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/doneLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey_100"
+            android:orientation="vertical"
+            android:layout_below="@+id/chooseBankLayout">
+
+
+            <TextView
+                android:id="@+id/textDoneMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Slip Saved, Add More Slips or Proceed to Step:2 "
+                android:paddingBottom="30dp"
+                android:theme="@style/ThemeOverlay.MyDoneText" />
+
+            <Button
+                android:id="@+id/btDoneLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textDoneMsg"
+                android:layout_alignParentLeft="true"
+                android:text="Add More>>"
+                android:theme="@style/ThemeOverlay.MyDoneButton" />
+
+            <Button
+                android:id="@+id/btDoneRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btDoneLeft"
+                android:layout_alignParentRight="true"
+                android:text="Step 2 >>"
+                android:theme="@style/ThemeOverlay.MyDoneButton" />
+
 
         </RelativeLayout>
 

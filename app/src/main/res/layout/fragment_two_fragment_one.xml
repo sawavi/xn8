@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollFragOne"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/textColorPrimary"
@@ -8,10 +9,10 @@
     android:orientation="vertical"
     tools:context="com.example.aaryan.xn8.TwoFragmentOne">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
+
         android:orientation="vertical"
         android:paddingLeft="14dp"
         android:paddingRight="14dp">
@@ -164,35 +165,68 @@
                 android:textSize="14sp" />
 
 
+
+
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/doneLayout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_100"
+            android:orientation="vertical"
+            android:layout_below="@+id/addBankLayout">
+
+
             <TextView
-                android:id="@+id/textAccAdded"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textBankBranch"
-                android:paddingBottom="15dp"
-                android:text=""
-                android:theme="@style/ThemeOverlay.MyInstructionText" />
-
-
-            <Button
-                android:id="@+id/btSave"
+                android:id="@+id/textDoneMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Slip Saved, Add More Slips or Proceed to Step:2 "
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:theme="@style/ThemeOverlay.MyDoneText" />
+
+            <Button
+                android:id="@+id/btDoneLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textDoneMsg"
+                android:layout_alignParentLeft="true"
+                android:text="Add More >>"
+                android:theme="@style/ThemeOverlay.MyDoneButton" />
+
+            <Button
+                android:id="@+id/btDoneRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/btDoneLeft"
                 android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/textAccAdded"
-                android:text="Save >>"
-                android:theme="@style/ThemeOverlay.MyDarkButton"
-                />
+                android:text="Step 2 >>"
+                android:theme="@style/ThemeOverlay.MyDoneButton" />
+
 
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/btSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/doneLayout"
+            android:layout_alignParentRight="true"
+            android:text="Save >>"
+            android:theme="@style/ThemeOverlay.MyDarkButton" />
 
         <RelativeLayout
             android:id="@+id/tipsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/addBankLayout"
+            android:layout_below="@+id/btSave"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:background="@color/grey_100"
@@ -227,7 +261,7 @@
                 android:textColor="@color/textColorPrimary" />
         </RelativeLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
 </ScrollView>
