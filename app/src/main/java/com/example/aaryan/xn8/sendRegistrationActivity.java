@@ -12,9 +12,13 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,6 +56,17 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
     private EditText editTextAadhaarNum;
 
 
+    private RelativeLayout mVarUserCardLayout;
+    private RelativeLayout mVarUserDetailsLayout;
+    private RelativeLayout mVarUserSetPasswordLayout;
+    private ViewGroup.LayoutParams regParams;
+    private ScrollView myScrollReg;
+    private Button buttonNext;
+    private Button buttonBack;
+    private TextView textViewStepMsg;
+    private TextView textViewChooseAny;
+
+
     private String firePassword;
     private String mVarYourIdIs;
     private String mVarFirstName;
@@ -84,14 +99,13 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_registration);
 
+ /**    Toolbar commented out
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //back button on ActionBar
-
+*/
         firebaseAuth = FirebaseAuth.getInstance();          //initializing firebase auth object
-
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-
         mDatabaseReference  = mFirebaseDatabase.getReference("users");  // get reference to 'users' node
 
 
@@ -112,8 +126,33 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         buttonSubmit.setOnClickListener(this);  //
 
 
+        //Toggle Layouts
+        //layout toggling
 
-            //setting value for editTextYourIdIs upon condition
+        mVarUserCardLayout = (RelativeLayout) findViewById(R.id.userCardLayout);
+        mVarUserDetailsLayout = (RelativeLayout) findViewById(R.id.userDetailsLayout);
+        mVarUserSetPasswordLayout = (RelativeLayout) findViewById(R.id.userSetPasswordLayout);
+        regParams = mVarUserCardLayout.getLayoutParams();
+
+        buttonNext = (Button) findViewById(R.id.btNext);
+        buttonBack = (Button) findViewById(R.id.btBack);
+        textViewStepMsg = (TextView) findViewById(R.id.textStepMsg);
+        textViewChooseAny = (TextView) findViewById(R.id.textChoose);
+
+
+        //layout toggling : setting Scroll to foucus on top
+        myScrollReg= (ScrollView) findViewById(R.id.activity_send_registration);
+
+        textViewStepMsg.setText("Step 1 of 2");
+        mVarUserDetailsLayout.setVisibility(View.GONE);
+        mVarUserSetPasswordLayout.setVisibility(View.GONE);
+        buttonBack.setVisibility(View.GONE);
+        buttonSubmit.setVisibility(View.GONE);
+
+        buttonNext.setOnClickListener(this);//
+        buttonBack.setOnClickListener(this);
+
+        //setting value for editTextYourIdIs upon condition
             editTextPanNum.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void afterTextChanged(Editable s) {
@@ -168,10 +207,52 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
 
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.btSubmit:
                 registerUser();     //calling register method on click
+                break;
+            case R.id.btNext:
+                nextDisplay();
+                break;
+            case R.id.btBack:
+                backDisplay();
+                break;
+        }
     }
 
+
+    private void nextDisplay(){
+
+        //make first gone second in
+        textViewStepMsg.setText("Step 2 of 2");
+        textViewChooseAny.setVisibility(View.GONE);
+        mVarUserCardLayout.setVisibility(View.GONE);
+        buttonNext.setVisibility(View.GONE);
+
+
+        mVarUserDetailsLayout.setVisibility(View.VISIBLE);
+        mVarUserSetPasswordLayout.setVisibility(View.VISIBLE);
+        buttonBack.setVisibility(View.VISIBLE);
+        buttonSubmit.setVisibility(View.VISIBLE);
+    }
+
+
+    private void backDisplay(){
+
+        //make second gone first in
+        textViewStepMsg.setText("Step 1 of 2");
+        textViewChooseAny.setVisibility(View.VISIBLE);
+        mVarUserCardLayout.setVisibility(View.VISIBLE);
+        buttonNext.setVisibility(View.VISIBLE);
+
+
+        mVarUserDetailsLayout.setVisibility(View.GONE);
+        mVarUserSetPasswordLayout.setVisibility(View.GONE);
+        buttonBack.setVisibility(View.GONE);
+        buttonSubmit.setVisibility(View.GONE);
+    }
 
     private void addUserProfileDetails(){
 
@@ -353,36 +434,22 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
     }
 
 
-
-
-
 //look tomarrow
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
-
         // Check which checkbox was clicked
         switch(view.getId()) {
             case R.id.checkbox_pan:
-                if (checked){
-
-
-                }
-                // Put some meat on the sandwich
+                if (checked){}
                 else
-                // Remove the meat
                 break;
             case R.id.checkbox_aadhaar:
                 if (checked){}
-                // Cheese me
                 else
-                // I'm lactose intolerant
-                break;
-            // TODO: Veggie sandwich
+                    break;
         }
     }
-
-
 
     @Override
     public void onStart() { super.onStart();
@@ -391,8 +458,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
     }
 
     @Override
-    public void onPause() {  super.onPause();
-    }
+    public void onPause() {  super.onPause(); }
 
     @Override
     public void onResume() {
@@ -404,14 +470,10 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         super.onDestroy();
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_main, menu);      // Inflate the menu; this adds items to the action bar if it is present.
         return true;
-
     }
 
     @Override

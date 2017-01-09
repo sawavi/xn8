@@ -218,8 +218,7 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
 
             buttonSave.setText("Add More");
 
-
-            progressDialog.setMessage("Account Details Added" );
+            progressDialog.setMessage("Adding Account Details..... " );
             progressDialog.show();
             // handler thread used to delay dismis of Dialog by 2 Sec
             Handler handler = new Handler();
@@ -284,10 +283,9 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
 
         if (    (((CheckBox) getView().findViewById(R.id.checkCurrent)).isChecked())  ) {
             //setting value   //??check out is it setting in database too??
-            checkSav.setEnabled(false);
             mVarAccType = "Current";
         }
-        else{
+        if (    (((CheckBox) getView().findViewById(R.id.checkSaving)).isChecked())  ){
             mVarAccType = "Saving";
         }
 

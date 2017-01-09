@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!--
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +31,7 @@
                 app:titleTextAppearance="@style/MyTitleTextStyle" />
 
         </android.support.design.widget.AppBarLayout>
-
+        -->
 
         <!-- IMP: paddingTop="76dp"   as toolbar height is set to 72dp -->
         <RelativeLayout
@@ -51,28 +52,41 @@
                 android:layout_gravity="center"
                 android:paddingBottom="20dp"
                 android:text="Registration"
-                android:theme="@style/ThemeOverlay.MyTitleText" />
-
-
-            <RelativeLayout
-                android:id="@+id/chooseCardLayout"
-                android:layout_width="match_parent"
+                android:theme="@style/ThemeOverlay.MyDoneText" />
+            <TextView
+                android:id="@+id/textStepMsg"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textReg"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:paddingBottom="20dp"
+                android:text="Step 1 of 2"
+                android:theme="@style/ThemeOverlay.MyTitleText" />
+
+            <TextView
+                android:id="@+id/textChoose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textStepMsg"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:paddingBottom="20dp"
+                android:text="Choose Any, PAN Card/Aadhaar Card Or Both."
+                android:theme="@style/ThemeOverlay.MyInstructionText" />
+
+            <RelativeLayout
+                android:id="@+id/userCardLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textChoose"
                 android:background="@color/colorGreyFaint"
                 android:orientation="vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingBottom="20dp">
 
-                <TextView
-                    android:id="@+id/textChoose"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:text="Choose Any, PAN Card/Aadhaar Card Or Both."
-                    android:theme="@style/ThemeOverlay.MyInstructionText" />
+
 
 
                 <CheckBox
@@ -80,7 +94,7 @@
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/textChoose"
+                    android:layout_alignParentStart="true"
                     android:onClick="onCheckboxClicked"
                     android:text="PAN Card" />
 
@@ -146,11 +160,21 @@
 
             </RelativeLayout>
 
+            <Button
+                android:id="@+id/btNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/userCardLayout"
+                android:text="NEXT >>"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+
             <RelativeLayout
-                android:id="@+id/middleLayout"
+                android:id="@+id/userDetailsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/chooseCardLayout"
+                android:layout_below="@+id/btNext"
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
                 android:paddingBottom="20dp"
@@ -202,10 +226,10 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/bottomLayout"
+                android:id="@+id/userSetPasswordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/middleLayout"
+                android:layout_below="@+id/userDetailsLayout"
                 android:layout_centerInParent="true"
                 android:background="@color/grey_100"
                 android:orientation="vertical"
@@ -280,17 +304,28 @@
                     android:textSize="14sp" />
 
 
-                <Button
-                    android:id="@+id/btSubmit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/checkAgg"
-                    android:layout_below="@+id/fieldPwd"
-                    android:onClick="registerUser"
-                    android:text="Submit >>"
-                    android:theme="@style/ThemeOverlay.MyDarkButton" />
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/btBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/userSetPasswordLayout"
+                android:text="Back"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+            <Button
+                android:id="@+id/btSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/btBack"
+
+                android:onClick="registerUser"
+                android:text="Submit >>"
+                android:theme="@style/ThemeOverlay.MyDarkButton" />
+
 
 
         </RelativeLayout>

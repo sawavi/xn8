@@ -38,11 +38,11 @@ public class sendLoginActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_login);
-
+/**
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); ///back button on actionbar
-
+**/
         //getting already running firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
 

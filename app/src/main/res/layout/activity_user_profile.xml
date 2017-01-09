@@ -136,7 +136,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/middleLayout"
+                android:id="@+id/userDetailsLayout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/bottomLayout"
+                android:id="@+id/userSetPasswordLayout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
                 android:paddingBottom="20dp"
                 android:paddingTop="20dp"
                 android:background="@color/grey_100"
-                android:layout_below="@+id/middleLayout">
+                android:layout_below="@+id/userDetailsLayout">
 
                 <TextView
                     android:layout_width="wrap_content"

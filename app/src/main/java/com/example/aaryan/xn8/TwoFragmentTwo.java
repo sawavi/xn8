@@ -367,7 +367,8 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
 
         if ((((CheckBox) getView().findViewById(R.id.checkCurrent)).isChecked())) {
             mVarAccType = "Current";
-        } else {
+        }
+        if((((CheckBox) getView().findViewById(R.id.checkSaving)).isChecked())) {
             mVarAccType = "Saving";
         }
         if ((!(((CheckBox) getView().findViewById(R.id.checkCurrent)).isChecked())) && (!(((CheckBox) getView().findViewById(R.id.checkSaving)).isChecked()))) {
