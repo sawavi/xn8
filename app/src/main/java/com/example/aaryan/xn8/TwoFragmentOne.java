@@ -54,7 +54,7 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     private Button buttonDoneLeft;
     private Button buttonDoneRight;
     private TextView textViewDoneMsg;
-
+    private DisplayMetrics metrics;
 
 
     private String mVarAccNum;
@@ -97,8 +97,8 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View viewOne = inflater.inflate(R.layout.fragment_two_fragment_one, container, false);
-        DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
+        View viewOne = inflater.inflate(R.layout.fragment_two_fragment_one, container, false);
+        metrics = getActivity().getResources().getDisplayMetrics();
         //TODO: look into mFirebaseAuth and firebaseUser later
         mFirebaseAuth = FirebaseAuth.getInstance();          //initializing firebase auth object
         mFirebaseUser = mFirebaseAuth.getCurrentUser();

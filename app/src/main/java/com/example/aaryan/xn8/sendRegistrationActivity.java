@@ -2,6 +2,7 @@ package com.example.aaryan.xn8;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,12 +10,15 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.ScrollingMovementMethod;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -31,6 +35,10 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class sendRegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -54,18 +62,28 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
     private EditText editTextEmail;
     private EditText editTextPanNum;
     private EditText editTextAadhaarNum;
+    private TextView textViewYourIdIs;
 
 
     private RelativeLayout mVarUserCardLayout;
     private RelativeLayout mVarUserDetailsLayout;
     private RelativeLayout mVarUserSetPasswordLayout;
+    private RelativeLayout mVarShowAgreeLayout;
     private ViewGroup.LayoutParams regParams;
+    private DisplayMetrics metrics;
+
+
     private ScrollView myScrollReg;
     private Button buttonNext;
     private Button buttonBack;
     private TextView textViewStepMsg;
     private TextView textViewChooseAny;
+    private CheckBox mVarCheckAgree;
+    private Button buttonAgree;
 
+    private TextView textViewAgreeDetails;
+    private BufferedReader bufReader;
+    private StringBuilder textAgreement;
 
     private String firePassword;
     private String mVarYourIdIs;
@@ -104,6 +122,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //back button on ActionBar
 */
+        metrics = this.getResources().getDisplayMetrics();
         firebaseAuth = FirebaseAuth.getInstance();          //initializing firebase auth object
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference  = mFirebaseDatabase.getReference("users");  // get reference to 'users' node
@@ -112,7 +131,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         //initializing views
         editTextPassword = (EditText) findViewById(R.id.fieldPwd);
         editTextYourIdIs = (EditText) findViewById(R.id.fieldYourIdIs);
-
+        textViewYourIdIs= (TextView) findViewById(R.id.yourIDIs);
         editTextFirstName = (EditText) findViewById(R.id.fieldFirstName);
         editTextLastName = (EditText) findViewById(R.id.fieldLastName);
         editTextMobNum = (EditText) findViewById(R.id.fieldMobileNo);
@@ -126,19 +145,57 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         buttonSubmit.setOnClickListener(this);  //
 
 
-        //Toggle Layouts
-        //layout toggling
 
+        //Setting Agreement agree
+        buttonAgree = (Button) findViewById(R.id.btAgreeAccept);
+        //read and set agreement
+        textViewAgreeDetails = (TextView) findViewById(R.id.textAgreeDetails);
+
+        textAgreement = new StringBuilder();
+        bufReader = null;
+
+        try {
+            bufReader = new BufferedReader(
+                    new InputStreamReader(getAssets().open("userAgreement.txt")));
+
+            // do reading, usually loop until end of file reading
+            String mLine;
+            while ((mLine = bufReader.readLine()) != null) {
+                textAgreement.append(mLine);
+                textAgreement.append('\n');
+            }
+        } catch (IOException e) {
+            Toast.makeText(getApplicationContext(),"Error reading file!",Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        } finally {
+            if (bufReader != null) {
+                try {
+                    bufReader.close();
+                } catch (IOException e) {
+                    //log the exception
+                }
+            }}
+
+        textViewAgreeDetails.setText(textAgreement);
+        textViewAgreeDetails.setMovementMethod(new ScrollingMovementMethod());
+//        textViewAgreeDetails.setVerticalScrollBarEnabled(true);
+  //      textViewAgreeDetails.setScrollBarStyle(View.SCROLLBARS_INSIDE_INSET);
+   //     textViewAgreeDetails.setLines(10);
+
+
+
+
+        //layout toggling
+        mVarShowAgreeLayout = (RelativeLayout) findViewById(R.id.showAgreeLayout);
         mVarUserCardLayout = (RelativeLayout) findViewById(R.id.userCardLayout);
         mVarUserDetailsLayout = (RelativeLayout) findViewById(R.id.userDetailsLayout);
         mVarUserSetPasswordLayout = (RelativeLayout) findViewById(R.id.userSetPasswordLayout);
-        regParams = mVarUserCardLayout.getLayoutParams();
+        regParams = mVarShowAgreeLayout.getLayoutParams();
 
         buttonNext = (Button) findViewById(R.id.btNext);
         buttonBack = (Button) findViewById(R.id.btBack);
         textViewStepMsg = (TextView) findViewById(R.id.textStepMsg);
         textViewChooseAny = (TextView) findViewById(R.id.textChoose);
-
 
         //layout toggling : setting Scroll to foucus on top
         myScrollReg= (ScrollView) findViewById(R.id.activity_send_registration);
@@ -146,11 +203,17 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         textViewStepMsg.setText("Step 1 of 2");
         mVarUserDetailsLayout.setVisibility(View.GONE);
         mVarUserSetPasswordLayout.setVisibility(View.GONE);
+        mVarShowAgreeLayout.setVisibility(View.GONE);
         buttonBack.setVisibility(View.GONE);
         buttonSubmit.setVisibility(View.GONE);
 
         buttonNext.setOnClickListener(this);//
         buttonBack.setOnClickListener(this);
+
+        buttonAgree.setOnClickListener(this);
+
+
+
 
         //setting value for editTextYourIdIs upon condition
             editTextPanNum.addTextChangedListener(new TextWatcher() {
@@ -169,6 +232,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
                         if (    (((CheckBox) findViewById(R.id.checkbox_pan)).isChecked())  ) {
                             //setting value   //??check out is it setting in database too??
                             editTextYourIdIs.setText(editTextPanNum.getText().toString().trim());
+                            textViewYourIdIs.setText("Your ID Is Your PAN Card Number");
                             mVarCardToggle =true;
                         }
                     }
@@ -193,6 +257,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
                     if (    ( ( (CheckBox) findViewById(R.id.checkbox_aadhaar)).isChecked() ) && (!(((CheckBox) findViewById(R.id.checkbox_pan)).isChecked()))  ) {
                         //setting value   //??check out is it setting in database too??
                         editTextYourIdIs.setText(editTextAadhaarNum.getText().toString().trim());
+                        textViewYourIdIs.setText("Your ID Is Your Aadhaar Card Number");
                         mVarCardToggle =false;
                     }
                 }
@@ -202,6 +267,23 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
 
         //non editable edit text
         editTextYourIdIs.setEnabled(false);
+
+
+        mVarCheckAgree = (CheckBox) findViewById(R.id.checkAgree);
+
+        mVarCheckAgree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+                if (isChecked) {
+
+                    showAgreeDisplay();
+
+                }
+            }
+        });
+
 
     }
 
@@ -219,11 +301,33 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
             case R.id.btBack:
                 backDisplay();
                 break;
+            case R.id.btAgreeAccept:
+                //need same display as btNext except agreeLayout
+                mVarShowAgreeLayout.setVisibility(View.GONE);
+                nextDisplay();
+//                mVarCheckAgree.isChecked();
+                break;
         }
     }
 
 
     private void nextDisplay(){
+
+        //validate before moving to NEXT
+
+        if(     (   (   (CheckBox) findViewById (R.id.checkbox_pan) ).isChecked()   ) && (TextUtils.isEmpty(editTextPanNum.getText().toString().trim()))){
+            Toast.makeText(this,"Please Enter Pan Number",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(    (   (   (CheckBox) findViewById (R.id.checkbox_aadhaar) ).isChecked()   ) && (TextUtils.isEmpty(editTextAadhaarNum.getText().toString().trim()))){
+            Toast.makeText(this,"Please Enter Aadhaar Number",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if( (!(   (   (CheckBox) findViewById (R.id.checkbox_pan) ).isChecked()   )) &&   (!(   (   (CheckBox) findViewById (R.id.checkbox_aadhaar) ).isChecked()   )) ){
+            Toast.makeText(this,"Atleast Pan Or Aadhaar Card Must Be Selected",Toast.LENGTH_LONG).show();
+            return;
+        }
+
 
         //make first gone second in
         textViewStepMsg.setText("Step 2 of 2");
@@ -253,6 +357,33 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
         buttonBack.setVisibility(View.GONE);
         buttonSubmit.setVisibility(View.GONE);
     }
+
+
+    private void showAgreeDisplay(){
+
+        //all gone Agreement On
+
+        textViewChooseAny.setVisibility(View.GONE);
+        mVarUserCardLayout.setVisibility(View.GONE);
+        buttonNext.setVisibility(View.GONE);
+
+        mVarUserDetailsLayout.setVisibility(View.GONE);
+        mVarUserSetPasswordLayout.setVisibility(View.GONE);
+        buttonBack.setVisibility(View.GONE);
+        buttonSubmit.setVisibility(View.GONE);
+
+
+        textViewStepMsg.setText("Agreement");
+        //regParams.height = metrics.heightPixels;
+        //regParams.width = metrics.widthPixels;
+        mVarShowAgreeLayout.setBackgroundColor(Color.parseColor("#F5F5F5"));
+        mVarShowAgreeLayout.setVisibility(View.VISIBLE);
+
+
+
+    }
+
+
 
     private void addUserProfileDetails(){
 
@@ -334,18 +465,6 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
 
         //validating other values
 
-        if(     (   (   (CheckBox) findViewById (R.id.checkbox_pan) ).isChecked()   ) && (TextUtils.isEmpty(mVarPanNum))){
-            Toast.makeText(this,"Please Enter Pan Number",Toast.LENGTH_LONG).show();
-            return;
-        }
-        if(    (   (   (CheckBox) findViewById (R.id.checkbox_aadhaar) ).isChecked()   ) && (TextUtils.isEmpty(mVarAadhaarNum))){
-            Toast.makeText(this,"Please Enter Aadhaar Number",Toast.LENGTH_LONG).show();
-            return;
-        }
-        if( (!(   (   (CheckBox) findViewById (R.id.checkbox_pan) ).isChecked()   )) &&   (!(   (   (CheckBox) findViewById (R.id.checkbox_aadhaar) ).isChecked()   )) ){
-            Toast.makeText(this,"Atleast Pan Or Aadhaar Card Must Selected",Toast.LENGTH_LONG).show();
-            return;
-        }
         if(TextUtils.isEmpty(mVarFirstName)){
             Toast.makeText(this,"Please Enter First Name",Toast.LENGTH_LONG).show();
             return;
@@ -358,7 +477,7 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
             Toast.makeText(this,"Please Enter Email Id",Toast.LENGTH_LONG).show();
             return;
         }
-        if(     (      !((CheckBox) findViewById (R.id.checkAgg) ).isChecked() )   ){
+        if(     (      !((CheckBox) findViewById (R.id.checkAgree) ).isChecked() )   ){
             Toast.makeText(this,"Please Accept Agreement To Register",Toast.LENGTH_LONG).show();
             return;
         }
@@ -446,6 +565,12 @@ public class sendRegistrationActivity extends AppCompatActivity implements View.
                 break;
             case R.id.checkbox_aadhaar:
                 if (checked){}
+                else
+                    break;
+            case R.id.checkAgree:
+                if (checked){
+               //
+                }
                 else
                     break;
         }

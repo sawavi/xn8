@@ -17,12 +17,17 @@
     \n Withdraw: \t limit Rs.2000 applicable 20/11/2016 12:00AM \nCircular Link:http:gov.com \n \n
         EXchange: \t Only at RBI limit Rs.2000 applicable 20/11/2016 12:00AM \nCircular Link:http:gov.com</string>
 
+    <string name="textActLogInstruction">Note: PAN or Aadhaar Card Number Is Your ID As Entered During Registration</string>
+    <string name="textActRegInstruction">Enter Your Card Details By Selecting Your PAN Card or Aadhaar Card Or Both. And Take Photograph Of It.</string>
 
     <string name="textFragOneDone">Step 0: \n\n Add Your  \n Bank Accounts </string>
     <string name="textFragOneDoneSaved">Account Added</string>
 
     <string name="textFragTwoDone">Step 1: \n\n Fill Slips \n ( Deposit or Withdrawal or DD) </string>
     <string name="textFragTwoDoneSaved">Slip Saved</string>
+
+    <string name="textFragThreeDone">Step 2: \n\n Select Slips And Banks \n To Get Token </string>
+    <string name="textFragThreeDoneSaved">Applied To Token</string>
 
 
 

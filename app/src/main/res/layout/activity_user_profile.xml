@@ -275,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/fieldPwd"
-                    android:layout_alignTop="@+id/checkAgg"
+                    android:layout_alignTop="@+id/checkAgree"
                     android:layout_alignParentRight="true"
                     android:theme="@style/ThemeOverlay.MyDarkButton"
                     android:onClick="registerUser" />

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/scrollFragThree"
     android:fadeScrollbars="false"
     android:orientation="vertical"
     android:background="@color/textColorPrimary"
@@ -150,21 +151,13 @@
                 android:textSize="14sp" />
 
 
-            <Button
-                android:id="@+id/btSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/textBankBranch"
-                android:text="Get Token >>"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/doneLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1dp"
             android:background="@color/grey_100"
             android:orientation="vertical"
             android:layout_below="@+id/chooseBankLayout">
@@ -174,10 +167,12 @@
                 android:id="@+id/textDoneMsg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:text="Slip Saved, Add More Slips or Proceed to Step:2 "
+                android:paddingTop="30dp"
                 android:paddingBottom="30dp"
                 android:theme="@style/ThemeOverlay.MyDoneText" />
 
@@ -187,7 +182,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textDoneMsg"
                 android:layout_alignParentLeft="true"
-                android:text="Add More>>"
+                android:text="Add More >>"
                 android:theme="@style/ThemeOverlay.MyDoneButton" />
 
             <Button
@@ -201,6 +196,55 @@
 
 
         </RelativeLayout>
+        <Button
+            android:id="@+id/btSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/doneLayout"
+            android:text="Get Token >>"
+            android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+        <RelativeLayout
+            android:id="@+id/tipsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btSave"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey_100"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textTip1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Tip 1: Simply adding as many Accounts as you have, will help in 'AutoFill' Slips and other data."
+                android:theme="@style/ThemeOverlay.MyInstructionText" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/emptyBottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/tipsLayout"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/grey_100"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+
+                android:text="_"
+                android:textColor="@color/textColorPrimary" />
+        </RelativeLayout>
+
+
 
     </RelativeLayout>
 

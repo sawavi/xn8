@@ -41,52 +41,74 @@
             android:orientation="vertical"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="76dp">
+            android:paddingTop="10dp">
 
-            <TextView
-                android:id="@+id/textReg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:paddingBottom="20dp"
-                android:text="Registration"
-                android:theme="@style/ThemeOverlay.MyDoneText" />
-            <TextView
-                android:id="@+id/textStepMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textReg"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:paddingBottom="20dp"
-                android:text="Step 1 of 2"
-                android:theme="@style/ThemeOverlay.MyTitleText" />
 
-            <TextView
-                android:id="@+id/textChoose"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/userHeaderLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textStepMsg"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:paddingBottom="20dp"
-                android:text="Choose Any, PAN Card/Aadhaar Card Or Both."
-                android:theme="@style/ThemeOverlay.MyInstructionText" />
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+
+                <ImageView
+                    android:id="@+id/imageMyLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="20dp"
+                    android:src="@mipmap/ic_launcher" />
+
+
+                <TextView
+                    android:id="@+id/textReg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageMyLogo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:text="Registration"
+                    android:theme="@style/ThemeOverlay.MyDoneText" />
+
+                <TextView
+                    android:id="@+id/textStepMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textReg"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:text="Step 1 of 2"
+                    android:theme="@style/ThemeOverlay.MyTitleText" />
+
+                <TextView
+                    android:id="@+id/textChoose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textStepMsg"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="20dp"
+                    android:text="@string/textActRegInstruction"
+                    android:theme="@style/ThemeOverlay.MyInstructionText" />
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/userCardLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textChoose"
+                android:layout_below="@+id/userHeaderLayout"
                 android:background="@color/colorGreyFaint"
                 android:orientation="vertical"
+                android:paddingBottom="10dp"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="20dp">
-
-
+                android:paddingRight="20dp">
 
 
                 <CheckBox
@@ -177,8 +199,7 @@
                 android:layout_below="@+id/btNext"
                 android:layout_centerInParent="true"
                 android:orientation="vertical"
-                android:paddingBottom="20dp"
-                android:paddingTop="20dp">
+                android:paddingBottom="10dp">
 
 
                 <EditText
@@ -233,8 +254,7 @@
                 android:layout_centerInParent="true"
                 android:background="@color/grey_100"
                 android:orientation="vertical"
-                android:paddingBottom="20dp"
-                android:paddingTop="20dp">
+                android:paddingBottom="20dp">
 
                 <TextView
                     android:id="@+id/textSetPwd"
@@ -251,40 +271,33 @@
                     android:id="@+id/yourIDIs"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
-                    android:layout_alignParentLeft="true"
                     android:layout_below="@+id/textSetPwd"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
                     android:paddingBottom="15dp"
                     android:paddingTop="10dp"
                     android:text="Your ID is "
-                    android:theme="@style/ThemeOverlay.MyAllText" />
+                    android:theme="@style/ThemeOverlay.MyInstructionText" />
 
                 <EditText
                     android:id="@+id/fieldYourIdIs"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/yourIDIs"
-                    android:hint=""
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/textPwd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_alignParentLeft="true"
                     android:layout_below="@+id/yourIDIs"
-                    android:paddingBottom="15dp"
-                    android:text="Password"
-                    android:theme="@style/ThemeOverlay.MyAllText" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:hint=""
+                    android:textColor="@color/blue_shade1"
+                    android:textSize="14sp" />
 
 
                 <EditText
                     android:id="@+id/fieldPwd"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/textPwd"
+                    android:layout_below="@+id/fieldYourIdIs"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword"
@@ -293,7 +306,7 @@
 
 
                 <CheckBox
-                    android:id="@+id/checkAgg"
+                    android:id="@+id/checkAgree"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_alignParentLeft="true"
@@ -321,11 +334,61 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@+id/btBack"
-
                 android:onClick="registerUser"
                 android:text="Submit >>"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
 
+
+            <RelativeLayout
+                android:id="@+id/showAgreeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btSubmit"
+                android:background="@color/grey_100"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/textShowAgree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Agreement"
+                    android:theme="@style/ThemeOverlay.MyDoneText" />
+
+
+                <TextView
+                    android:id="@+id/textAgreeDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textShowAgree"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:scrollbars="vertical"
+                    android:maxLines="10"
+                    android:text=""
+                    android:theme="@style/ThemeOverlay.MyInstructionText" />
+
+
+                <Button
+                    android:id="@+id/btAgreeAccept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/textAgreeDetails"
+                    android:text="Accept >>"
+                    android:theme="@style/ThemeOverlay.MyDoneButton" />
+
+
+            </RelativeLayout>
 
 
         </RelativeLayout>

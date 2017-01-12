@@ -46,91 +46,166 @@
             android:paddingRight="10dp"
             android:paddingTop="10dp">
 
-            <TextView
-                android:id="@+id/textWelcome"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/userHeaderLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:paddingBottom="10dp"
-                android:text="Welcome"
-                android:theme="@style/ThemeOverlay.MyDoneText" />
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
 
-            <TextView
-                android:id="@+id/textID"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textWelcome"
-                android:paddingBottom="15dp"
-                android:text="Enter ID"
-                android:theme="@style/ThemeOverlay.MyAllText" />
-
-            <EditText
-                android:id="@+id/fieldID"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/textID"
-                android:hint="Your ID"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/imageMyLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="20dp"
+                    android:src="@mipmap/ic_launcher" />
 
 
-            <TextView
-                android:id="@+id/textPwd"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textID"
-                android:paddingBottom="15dp"
-                android:text="Password"
-                android:theme="@style/ThemeOverlay.MyAllText" />
+                <TextView
+                    android:id="@+id/textWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imageMyLogo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:text="Welcome"
+                    android:theme="@style/ThemeOverlay.MyDoneText" />
+
+                <TextView
+                    android:id="@+id/textNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textWelcome"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:paddingBottom="20dp"
+                    android:text="@string/textActLogInstruction"
+                    android:theme="@style/ThemeOverlay.MyInstructionText" />
 
 
-            <EditText
-                android:id="@+id/fieldPwd"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/textPwd"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textColor="@color/colorBlack"
-                android:textSize="14sp" />
+            </RelativeLayout>
 
-
-            <Button
-                android:id="@+id/btResendPwd"
-                android:layout_width="170dp"
+            <RelativeLayout
+                android:id="@+id/loginFieldsLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/textPwd"
-                android:layout_marginTop="10dp"
-                android:text="Forgot Password"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:layout_below="@+id/userHeaderLayout"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
-            <Button
-                android:id="@+id/btLogin"
-                android:layout_width="170dp"
+
+                <TextView
+                    android:id="@+id/textID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:paddingBottom="15dp"
+                    android:text="Enter ID"
+                    android:theme="@style/ThemeOverlay.MyAllText" />
+
+                <EditText
+                    android:id="@+id/fieldID"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/textID"
+                    android:hint="Your ID"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/textPwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textID"
+                    android:paddingBottom="15dp"
+                    android:text="Password"
+                    android:theme="@style/ThemeOverlay.MyAllText" />
+
+
+                <EditText
+                    android:id="@+id/fieldPwd"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/textPwd"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+
+                <Button
+                    android:id="@+id/btResendPwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/textPwd"
+                    android:layout_marginTop="10dp"
+                    android:text="Forgot Password"
+                    android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+                <Button
+                    android:id="@+id/btLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/btResendPwd"
+                    android:text="LOG IN >>"
+                    android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/resendPassLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/btResendPwd"
-                android:text="LOG IN >>"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+                android:layout_below="@+id/loginFieldsLayout"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
+                <EditText
+                    android:id="@+id/fieldEnterID2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:hint="Enter ID : Card Number"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/textNote"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/btResendPwd"
-                android:layout_gravity="center"
-                android:text="Note: PAN or Aadhaar Card Number Is Your ID As Entered During Registration"
-                android:theme="@style/ThemeOverlay.MyInstructionText" />
+                <EditText
+                    android:id="@+id/fieldResendEmail2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/fieldEnterID2"
+                    android:hint="Enter E-mail ID "
+                    android:textColor="@color/colorBlack"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btSendPass2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/fieldResendEmail2"
+                    android:text="E-mail Password >>"
+                    android:theme="@style/ThemeOverlay.MyDarkButton" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

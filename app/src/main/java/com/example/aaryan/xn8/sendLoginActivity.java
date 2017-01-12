@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +28,13 @@ public class sendLoginActivity extends AppCompatActivity implements View.OnClick
     private EditText editTextPassword;
     private Button buttonLogin;
     private Button buttonResend;
+    private Button buttonSendPwd;
     private ProgressDialog progressDialog;
+
+
+    private RelativeLayout loginUserLayout;
+    private RelativeLayout resendLayout;
+
 
     //defining firebaseauth object
     private FirebaseAuth firebaseAuth;
@@ -52,11 +59,20 @@ public class sendLoginActivity extends AppCompatActivity implements View.OnClick
 
         buttonLogin = (Button) findViewById(R.id.btLogin);
         buttonResend= (Button) findViewById(R.id.btResendPwd);
+        buttonSendPwd=(Button) findViewById(R.id.btSendPass2);
         progressDialog = new ProgressDialog(this);
 
         //attaching listener to button
         buttonLogin.setOnClickListener(this);
         buttonResend.setOnClickListener(this);
+        buttonSendPwd.setOnClickListener(this);
+
+
+        loginUserLayout = (RelativeLayout) findViewById(R.id.loginFieldsLayout);
+        resendLayout = (RelativeLayout) findViewById(R.id.resendPassLayout);
+
+        resendLayout.setVisibility(View.GONE);
+
 
     }
 
@@ -69,13 +85,19 @@ public class sendLoginActivity extends AppCompatActivity implements View.OnClick
                 LoginUser();
                     break;
             case R.id.btResendPwd:
-                ResendUserPwd();
+                forgotPwd();
                     break;
-                // TODO:
+
+            case R.id.btSendPass2:
+                sendPwdByMail();
+                break;
         }
     }
 
-
+    private  void sendPwdByMail(){
+        // TODO:btSendPass2   send email to user
+        Toast.makeText(sendLoginActivity.this,"Password Sent To Your Registered Email ID",Toast.LENGTH_LONG).show();
+    }
 
     private void LoginUser(){
 
@@ -131,10 +153,14 @@ public class sendLoginActivity extends AppCompatActivity implements View.OnClick
 
 
 
-    private void ResendUserPwd(){
+    private void forgotPwd(){
 
         // TODO:  IMP : add server side functionality to resend password ; and make id registration complusary
-        Toast.makeText(sendLoginActivity.this,"Password Sent To Your Registered Email ID",Toast.LENGTH_LONG).show();
+
+        loginUserLayout.setVisibility(View.GONE);
+        resendLayout.setVisibility(View.VISIBLE);
+
+
 
 
     }
