@@ -13,8 +13,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class basicClass {
 
+//    public static String mDBDepositSlip = "addDeposit";
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+
 
 
 

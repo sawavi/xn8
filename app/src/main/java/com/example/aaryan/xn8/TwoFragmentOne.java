@@ -114,7 +114,7 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
         editTextBranchName= (EditText) viewOne.findViewById(R.id.fieldBankBranch);
         checkCur =  (CheckBox) viewOne.findViewById(R.id.checkCurrent);
         checkSav = (CheckBox) viewOne.findViewById(R.id.checkSaving);
-        buttonSave = (Button) viewOne.findViewById(R.id.btSave);
+        buttonSave = (Button) viewOne.findViewById(R.id.btApplyToken);
 
 
         //layout toggling
@@ -189,7 +189,7 @@ public class TwoFragmentOne extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         switch(v.getId()){
-            case R.id.btSave:
+            case R.id.btApplyToken:
             userAddAccValidate();
                 break;
             case R.id.btDoneLeft:

@@ -5,16 +5,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 
 public class ThreeFragment extends Fragment {
 
 
-    private View v;
+
+    private View viewToken;
 
     public ThreeFragment() {
         // Required empty public constructor
@@ -29,22 +35,11 @@ public class ThreeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        viewToken = inflater.inflate(R.layout.fragment_three, container, false);
 
-        basicClass baseClass =new basicClass();
 
-        if (baseClass.isUserLogedIn() == false) {
-            // Not signed in, launch the Sign In activity : Correct method ;)
-            //startActivity(new Intent(this.getActivity(), sendRegistrationActivity.class));
-            //  return v;
-            v = inflater.inflate(R.layout.fragment_five, container, false);
-            Toast.makeText(this.getActivity(),"if user not signed in",Toast.LENGTH_LONG).show();
-
-        } else {
-
-            Toast.makeText(this.getActivity(),"Else user signed in",Toast.LENGTH_LONG).show();
-        }
-
-        // Inflate the layout for this fragment
-        return v;
+        return viewToken;
     }
+
+
 }

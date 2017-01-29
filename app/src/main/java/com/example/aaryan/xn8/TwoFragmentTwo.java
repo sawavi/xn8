@@ -1,13 +1,14 @@
 package com.example.aaryan.xn8;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,6 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -52,6 +52,7 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
     private EditText editTextAccNum;
     private EditText editTextDebitCardNum;
     private EditText editTextPanNum;
+    private EditText editTextTotalAmount;
     //private EditText editTextIfscCodeNum;
     //private EditText editTextBankName;
     private EditText editTextBranchName;
@@ -78,6 +79,7 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
     private String mVarAccType;
     private String mVarDebitCardNum;
     private String mVarPanNum;
+    private String mVarTotalAmount;
     //private String mVarIfscCodeNum;
     //private String mVarBankName;
     private String mVarBranchName;
@@ -102,23 +104,39 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
     private FirebaseAuth mFirebaseAuth;
 
 
-    public TwoFragmentTwo() {
-        // Required empty public constructor
-    }
+    private DatabaseReference mVarPushRef;
+    private String mVarPushId;
+
+    ////////////////shared preference .......store locally
+    public static final String MyPREFERENCES = "MySharedPref" ;
+    //public static final int varKeySlipType = 0;  //  0=nothing; 1= deposit ; 2=withdrwal ; 3= dd
+    public static final String varKeyPushId = "prefKeyPushId";
+
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
+
+    public TwoFragmentTwo() {}
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //////////Storing data SharedPreferences
+        sharedpreferences = getActivity().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        editor = sharedpreferences.edit();      //opining editor
+
+
+
         // Inflate the layout for this fragment
         View viewTwo = inflater.inflate(R.layout.fragment_two_fragment_two, container, false);
-
         //only working solution to get parent width height in onCreateView()
       //  Display display = getActivity().getWindowManager().getDefaultDisplay();
         DisplayMetrics metrics = getActivity().getResources().getDisplayMetrics();
@@ -130,14 +148,16 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
         //mDatabaseRefDeposit = mFirebaseDatabase.getReference("addDeposit");  // get reference to 'users' node
 
         editTextAccName = (EditText) viewTwo.findViewById(R.id.fieldACName);
+
         editTextAccNum = (EditText) viewTwo.findViewById(R.id.fieldAccNum);
         editTextDebitCardNum = (EditText) viewTwo.findViewById(R.id.fieldCardNum);
         editTextPanNum = (EditText) viewTwo.findViewById(R.id.fieldPanNo);
+        editTextTotalAmount = (EditText) viewTwo.findViewById(R.id.fieldCashTotalAmount);
         // editTextIfscCodeNum= (EditText) viewTwo.findViewById(R.id.fieldIFSCCode);
         // editTextBankName= (EditText) viewTwo.findViewById(R.id.fieldBankName);
         editTextBranchName = (EditText) viewTwo.findViewById(R.id.fieldBankBranch);
 
-        buttonSave = (Button) viewTwo.findViewById(R.id.btSave);
+        buttonSave = (Button) viewTwo.findViewById(R.id.btApplyToken);
 
        //layout toggling
 
@@ -168,6 +188,9 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
             buttonDoneLeft.setVisibility(View.INVISIBLE);
             buttonDoneRight.setVisibility(View.INVISIBLE);
 
+        }else{
+
+            mVarLocalUserId = mFirebaseUser.getUid();
         }
 
 
@@ -197,7 +220,8 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
                 if (isChecked) {
                     checkWithdrawal.setChecked(false);
                     checkDD.setChecked(false);
-                    mDatabaseRefDeposit = mFirebaseDatabase.getReference("addDeposit");
+                    mDatabaseRefDeposit = mFirebaseDatabase.getReference("addDeposit");  //using const from class
+
                 }
             }
         });
@@ -263,7 +287,7 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btSave:
+            case R.id.btApplyToken:
                 userSlipValidate();
                 break;
             case R.id.btDoneLeft:
@@ -281,27 +305,76 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
         localUser.setAccType(mVarAccType);
         localUser.setDebitCardNum(mVarDebitCardNum);
         localUser.setPanNum(mVarPanNum);
+        localUser.setTotalAmount(mVarTotalAmount);
         // localUser.setIfscCodeNum(mVarIfscCodeNum);
         //localUser.setBankName(mVarBankName);
         localUser.setBranchName(mVarBranchName);
 
+        editor.clear();
+
         if ((((CheckBox) getView().findViewById(R.id.checkDeposit)).isChecked())) {
 
-            mVarLocalUserId = mFirebaseUser.getUid();
-            mDatabaseRefDeposit.child(mVarLocalUserId).push().setValue(localUser);
-        } else if ((((CheckBox) getView().findViewById(R.id.checkWithdrawal)).isChecked())) {
 
-            mVarLocalUserId = mFirebaseUser.getUid();
-            mDatabaseRefWithdrawal.child(mVarLocalUserId).push().setValue(localUser);
-        } else if ((((CheckBox) getView().findViewById(R.id.checkDD)).isChecked())) {
+            mVarPushRef = mDatabaseRefDeposit.child(mVarLocalUserId).push();
+            mVarPushId = mVarPushRef.getKey();
 
-            mVarLocalUserId = mFirebaseUser.getUid();
-            mDatabaseRefDD.child(mVarLocalUserId).push().setValue(localUser);
+            ////////////add data to Model:
+            localUser.setPushID(mVarPushId);
+
+            ////////////add data to DB:
+            mVarPushRef.setValue(localUser);
+
+            /////////// add data  to sharedPreferences
+            editor.putInt("keySlipType",1);         //1=deposit
+            //editor.putString(varKeySlipType, "addDeposit");
+            editor.putString(varKeyPushId,mVarPushId);
+            editor.commit();
+            System.out.println("______1_______frag 2 SharedPref int Value____" + sharedpreferences.getInt("keySlipType",0));
+
+        } if ((((CheckBox) getView().findViewById(R.id.checkWithdrawal)).isChecked())) {
+
+            //mDatabaseRefWithdrawal.child(mVarLocalUserId).push().setValue(localUser);
+
+            mVarPushRef = mDatabaseRefWithdrawal.child(mVarLocalUserId).push();
+            mVarPushId = mVarPushRef.getKey();
+
+            ////////////add data to Model:
+            localUser.setPushID(mVarPushId);
+
+            ////////////add data to DB:
+            mVarPushRef.setValue(localUser);
+
+            /////////// add data  to sharedPreferences
+            editor.putInt("keySlipType",2);     //2=withdrawal
+            editor.putString(varKeyPushId,mVarPushId);
+            editor.commit();
+            System.out.println("______2_______frag 2 SharedPref int Value____" + sharedpreferences.getInt("keySlipType",0));
+
+        } if ((((CheckBox) getView().findViewById(R.id.checkDD)).isChecked())) {
+
+            //mDatabaseRefDD.child(mVarLocalUserId).push().setValue(localUser);
+
+            mVarPushRef = mDatabaseRefDD.child(mVarLocalUserId).push();
+            mVarPushId = mVarPushRef.getKey();
+
+            ////////////add data to Model:
+            localUser.setPushID(mVarPushId);
+
+            ////////////add data to DB:
+            mVarPushRef.setValue(localUser);
+
+            /////////// add data  to sharedPreferences
+            editor.putInt("keySlipType",3);     // 3= DD
+            editor.putString(varKeyPushId,mVarPushId);
+            editor.commit();
+            System.out.println("______3_______frag 2 SharedPref int Value____" + sharedpreferences.getInt("keySlipType",0));
+
         }
 
-
+        System.out.println("______zzzzzzzzzzzzzzzzfrag 2  int Value____" + sharedpreferences.getInt("keySlipType",0));
         progressDialog.setMessage("Adding Slip Details.....");
         progressDialog.show();
+
         // handler thread used to delay dismis of Dialog by 2 Sec
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -310,9 +383,14 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
             }
         }, 2000);
 
+
         //replace slipLayout with doneLayout
         disappearSlipDisplay();
+        //saveSlipTypeToSharedPref();
 
+
+        /////////close SharedPreferences after Saving data
+        editor.commit();
     }
 
 
@@ -360,6 +438,7 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
         mVarAccNum = editTextAccNum.getText().toString().trim();
         mVarDebitCardNum = editTextDebitCardNum.getText().toString().trim();
         mVarPanNum = editTextPanNum.getText().toString().trim();
+        mVarTotalAmount = editTextTotalAmount.getText().toString().trim();
         // mVarIfscCodeNum = editTextIfscCodeNum.getText().toString().trim();
         // mVarBankName = editTextBankName.getText().toString().trim();
         mVarBranchName = editTextBranchName.getText().toString().trim();
@@ -385,6 +464,11 @@ public class TwoFragmentTwo extends Fragment implements View.OnClickListener {
         }
         if (TextUtils.isEmpty(mVarBranchName)) {
             Toast.makeText(getActivity(), "Please Enter Branch Name", Toast.LENGTH_LONG).show();
+            return;
+        }
+        //TODO: total Amount will be auto calculated, no need of it
+        if (TextUtils.isEmpty(mVarTotalAmount)) {
+            Toast.makeText(getActivity(), "Please Enter Total Amount", Toast.LENGTH_LONG).show();
             return;
         }
         if ((!(((CheckBox) getView().findViewById(R.id.checkDeposit)).isChecked())) && (!(((CheckBox) getView().findViewById(R.id.checkWithdrawal)).isChecked())) && (!(((CheckBox) getView().findViewById(R.id.checkDD)).isChecked()))) {

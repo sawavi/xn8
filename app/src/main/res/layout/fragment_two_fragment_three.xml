@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollFragThree"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/scrollFragThree"
+    android:background="@color/textColorPrimary"
     android:fadeScrollbars="false"
     android:orientation="vertical"
-    android:background="@color/textColorPrimary"
     tools:context="com.example.aaryan.xn8.TwoFragmentThree">
 
     <!-- TODO: 700dp set manually as its not scrolling do something -->
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="700dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingLeft="14dp"
         android:paddingRight="14dp">
         <!-- TODO: Update blank fragment layout -->
 
         <RelativeLayout
-            android:id="@+id/wrapLayout"
+            android:id="@+id/slipWraperLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/grey_100"
@@ -34,46 +34,53 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:paddingBottom="10dp"
-                android:text="Step 2: Choose Slip And Bank to Apply."
+                android:text="Step 2: Choose Saved Slip And Bank to Apply."
                 android:theme="@style/ThemeOverlay.MyTitleText" />
 
+
             <LinearLayout
-                android:id="@+id/checksLayout"
+                android:id="@+id/spinnerOptionsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textFillSlipDetails"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/colorGreyFaint"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorPrimaryDark"
+
+                     />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/displaySlipsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_below="@+id/spinnerOptionsLayout"
                 android:layout_gravity="center_horizontal"
                 android:background="@color/colorPrimary"
                 android:orientation="vertical">
 
-                <CheckBox
-                    android:id="@+id/checkDeposit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="Slip1"
-                    android:textColor="@color/blue_shade1"
-                    android:textSize="14sp" />
-
-                <CheckBox
-                    android:id="@+id/checkWithdrawal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:paddingRight="10dp"
-                    android:text="Slip2"
-                    android:textColor="@color/blue_shade1"
-                    android:textSize="14sp" />
-
-                <CheckBox
-                    android:id="@+id/checkDD"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:paddingRight="10dp"
-                    android:text="Slip3"
-                    android:textColor="@color/blue_shade1"
-                    android:textSize="14sp" />
+                <ListView
+                    android:id="@+id/listView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </ListView>
 
 
-            </LinearLayout>
+            </RelativeLayout>
+
+
 
         </RelativeLayout>
 
@@ -82,7 +89,7 @@
             android:id="@+id/chooseBankLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/wrapLayout"
+            android:layout_below="@+id/slipWraperLayout"
             android:background="@color/grey_100"
             android:orientation="vertical"
             android:paddingTop="10dp">
@@ -151,16 +158,15 @@
                 android:textSize="14sp" />
 
 
-
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/doneLayout"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_below="@+id/chooseBankLayout"
             android:background="@color/grey_100"
-            android:orientation="vertical"
-            android:layout_below="@+id/chooseBankLayout">
+            android:orientation="vertical">
 
 
             <TextView
@@ -171,17 +177,17 @@
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:text="Slip Saved, Add More Slips or Proceed to Step:2 "
-                android:paddingTop="30dp"
                 android:paddingBottom="30dp"
+                android:paddingTop="30dp"
+                android:text="Slip Saved, Add More Slips or Proceed to Step:2 "
                 android:theme="@style/ThemeOverlay.MyDoneText" />
 
             <Button
                 android:id="@+id/btDoneLeft"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textDoneMsg"
                 android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textDoneMsg"
                 android:text="Add More >>"
                 android:theme="@style/ThemeOverlay.MyDoneButton" />
 
@@ -189,15 +195,16 @@
                 android:id="@+id/btDoneRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/btDoneLeft"
                 android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/btDoneLeft"
                 android:text="Step 2 >>"
                 android:theme="@style/ThemeOverlay.MyDoneButton" />
 
 
         </RelativeLayout>
+
         <Button
-            android:id="@+id/btSave"
+            android:id="@+id/btApplyToken"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -205,11 +212,13 @@
             android:text="Get Token >>"
             android:theme="@style/ThemeOverlay.MyDarkButton" />
 
+
+
         <RelativeLayout
             android:id="@+id/tipsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btSave"
+            android:layout_below="@+id/btApplyToken"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:background="@color/grey_100"
@@ -243,7 +252,6 @@
                 android:text="_"
                 android:textColor="@color/textColorPrimary" />
         </RelativeLayout>
-
 
 
     </RelativeLayout>

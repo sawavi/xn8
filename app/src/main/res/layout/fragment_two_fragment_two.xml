@@ -28,7 +28,7 @@
             android:paddingTop="10dp">
 
             <RelativeLayout
-                android:id="@+id/wrapLayout"
+                android:id="@+id/slipWraperLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/grey_100"
@@ -46,7 +46,7 @@
                     android:theme="@style/ThemeOverlay.MyTitleText" />
 
                 <LinearLayout
-                    android:id="@+id/checksLayout"
+                    android:id="@+id/displaySlipsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/textFillSlipDetails"
@@ -89,7 +89,7 @@
                 android:id="@+id/checksACLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/wrapLayout"
+                android:layout_below="@+id/slipWraperLayout"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal"
                 android:paddingTop="20dp">
@@ -357,7 +357,7 @@
                 </RelativeLayout>
 
                 <EditText
-                    android:id="@+id/fieldCashAmount"
+                    android:id="@+id/fieldCashTotalAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_alignParentLeft="true"
@@ -367,11 +367,11 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/fieldCashAmountWords"
+                    android:id="@+id/fieldCashTotalAmountWords"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_below="@+id/fieldCashAmount"
+                    android:layout_below="@+id/fieldCashTotalAmount"
                     android:hint="Total Amount In Words"
                     android:textColor="@color/colorBlack"
                     android:textSize="14sp" />
@@ -427,7 +427,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/btSave"
+            android:id="@+id/btApplyToken"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -440,7 +440,7 @@
             android:id="@+id/tipsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btSave"
+            android:layout_below="@+id/btApplyToken"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:background="@color/grey_100"

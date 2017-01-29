@@ -38,6 +38,8 @@ public class TwoFragment extends Fragment {
         adapter.addFragment(new TwoFragmentTwo(), "1.Fill In Slips");
         adapter.addFragment(new TwoFragmentThree(), "2.Choose Bank");
         adapter.addFragment(new TwoFragmentFour(), "3.Get Tokens");
+
+
     }
 
     @Override
@@ -55,6 +57,47 @@ public class TwoFragment extends Fragment {
 
         tabLayout = (TabLayout) view.findViewById(R.id.tabs2);
         tabLayout.setupWithViewPager(viewPagerTwo);
+
+
+        viewPagerTwo.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+
+            // optional
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            // optional
+            @Override
+            public void onPageSelected(int position) {
+
+                switch (position) {
+                    case 0:
+                        Toast.makeText(getActivity(), "tab0 ", Toast.LENGTH_LONG).show();
+
+                        break;
+                    case 1:
+                        Toast.makeText(getActivity(), "tab1 ", Toast.LENGTH_LONG).show();
+                        break;
+                    case 2:
+//TODO: TwoFragmentThree.getUserSlipsToDisplay(); was made into public static , just to use it here on tabs selection
+                        //also mVarLocalUserId in TwoFragmentThree made into static .....if any issues think about again....so far works OK
+                        //below method is supposed to load list of updated saved slips automatically on tab selection
+                     //   TwoFragmentThree.clearListView();
+                        TwoFragmentThree.setMySpinnerSelection();
+                        Toast.makeText(getActivity(), "tab2 ", Toast.LENGTH_LONG).show();
+                        break;
+                    case 3:
+                        Toast.makeText(getActivity(), "tab3 ", Toast.LENGTH_LONG).show();
+                        break;
+                }
+            }
+
+            // optional
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
 
         //simply manipulating tabs;   have set style
 //        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_blue);
@@ -88,6 +131,7 @@ public class TwoFragment extends Fragment {
     */
         viewPager.setAdapter(adapter);
     }
+
     //  method used by tabs
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -117,5 +161,18 @@ public class TwoFragment extends Fragment {
             return mFragmentTitleList.get(position);
         }
     }
+
+/**
+ @Override public void passData(String data) {
+ TwoFragmentThree fragmentB = new TwoFragmentThree ();
+ Bundle args = new Bundle();
+ args.putString(TwoFragmentThree.DATA_RECEIVE, data);
+ fragmentB .setArguments(args);
+ getFragmentManager().beginTransaction()
+ .replace(R.id.container, fragmentB )
+ .commit();
+ }
+
+ **/
 
 }

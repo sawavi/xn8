@@ -214,7 +214,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/btSave"
+            android:id="@+id/btApplyToken"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/doneLayout"
@@ -226,7 +226,7 @@
             android:id="@+id/tipsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btSave"
+            android:layout_below="@+id/btApplyToken"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:background="@color/grey_100"

@@ -1,10 +1,15 @@
 package com.example.aaryan.xn8;
 
 /**
- * Created by aaryan on 1/6/2017.
+ * Created by aaryan on 1/29/2017.
  */
 
-public class userSlipsModel {
+public class userTokenModel {
+
+
+    private String ifscCodeNum;
+
+
 
     private String UserID;
     private String pushID;
@@ -15,14 +20,20 @@ public class userSlipsModel {
     private String panNum;
     private String totalAmount;
 
-    //private String ifscCodeNum;
+
     private String bankName;
     private String branchName;
 
 
-    public userSlipsModel() { }
+    public userTokenModel() { }
 
-    public userSlipsModel(String ifscCodeNum, String bankName, double branchName, String accNum, String debitCardNum, String accType, String UID) { }
+    public userTokenModel(String ifscCodeNum, String bankName, double branchName, String accNum, String debitCardNum, String accType, String UID) { }
+
+
+
+
+    public String getIfscCodeNum() {   return ifscCodeNum;    }
+    public void setIfscCodeNum(String ifscCodeNum) {     this.ifscCodeNum = ifscCodeNum;  }
 
 
 
@@ -41,10 +52,6 @@ public class userSlipsModel {
     public String getDebitCardNum() {    return debitCardNum;      }
     public void setDebitCardNum(String debitCardNum) {    this.debitCardNum = debitCardNum;      }
 
-
-    //public String getIfscCodeNum() {   return ifscCodeNum;    }
-    //public void setIfscCodeNum(String ifscCodeNum) {     this.ifscCodeNum = ifscCodeNum;  }
-
     public String getBankName() {   return bankName;    }
     public void setBankName(String bankName) {     this.bankName = bankName;  }
 
@@ -59,6 +66,7 @@ public class userSlipsModel {
 
     public String getTotalAmount() {   return totalAmount;    }
     public void setTotalAmount(String vTotalAmount) {     this.totalAmount = vTotalAmount;  }
+
 
 
 }
